@@ -1,0 +1,65 @@
+{
+  "root": true,
+  "api": {
+    "projectId": "mgxz50fq",
+    "dataset": "develop"
+  },
+  "project": {
+    "name": "Skydio",
+    "basePath": "/"
+  },
+  "plugins": [
+    "@sanity/base",
+    "@sanity/components",
+    "@sanity/default-layout",
+    "@sanity/default-login",
+    "@sanity/desk-tool",
+    "@sanity/dashboard",
+    "@sanity/vision",
+    "copy-module",
+    "media",
+    "@sanity/color-input",
+    "tabs",
+    "seo-tools",
+    "dashboard-widget-netlify",
+    "mux-input",
+    "note-field",
+    "order-documents",
+    "intl-input",
+    "@sanity/scheduled-publishing"
+  ],
+  "parts": [
+    {
+      "implements": "part:@sanity/form-builder/input/image/asset-sources",
+      "path": "./parts/assetSources.js"
+    },
+    {
+      "implements": "part:@sanity/form-builder/input/file/asset-sources",
+      "path": "./parts/assetSources.js"
+    },
+    {
+      "name": "part:@sanity/base/schema",
+      "path": "./schemas/schemas.js"
+    },
+    {
+      "name": "part:@sanity/desk-tool/structure",
+      "path": "./deskStructure.js"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "./dashboardConfig.js"
+    },
+    {
+      "implements": "part:@sanity/base/brand-logo",
+      "path": "./components/Logo.js"
+    },
+    {
+      "name": "part:@sanity/base/initial-value-templates",
+      "path": "./initialValueTemplates.js"
+    },
+    {
+      "name": "part:@sanity/base/new-document-structure",
+      "path": "./newDocumentStructure.js"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "idStructure": "subpath",
+  "referenceBehavior": "weak",
+  "base": { "name": "en-us", "title": "English - United States" },
+  "languages": [
+    { "name": "en-au", "title": "English - Australia" },
+    { "name": "en-nz", "title": "English - New Zealand" }
+  ]
+}

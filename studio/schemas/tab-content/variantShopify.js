@@ -1,0 +1,87 @@
+export default {
+  title: 'Shopify Variant Content',
+  name: 'variantShopify',
+  type: 'object',
+  hidden: true,
+  fieldsets: [
+    {
+      name: 'default',
+      title: 'Default Variant',
+      options: {
+        collapsible: true,
+        collapsed: true,
+      },
+    },
+  ],
+  fields: [
+    {
+      name: 'productTitle',
+      title: 'Product Title',
+      type: 'string',
+      readOnly: true,
+    },
+    {
+      name: 'variantTitle',
+      title: 'Variant Title',
+      type: 'string',
+      readOnly: true,
+    },
+    {
+      name: 'sku',
+      title: 'SKU',
+      type: 'string',
+      description: 'This comes from Shopify and cannot be changed',
+      readOnly: true,
+    },
+    {
+      name: 'productId',
+      title: 'Product ID',
+      type: 'string',
+      description: 'This comes from Shopify and cannot be changed',
+      readOnly: true,
+    },
+    {
+      name: 'variantId',
+      title: 'Variant ID',
+      type: 'string',
+      description: 'This comes from Shopify and cannot be changed',
+      readOnly: true,
+    },
+    {
+      name: 'globalId',
+      title: 'Global ID',
+      type: 'string',
+      description: 'This comes from Shopify and cannot be changed',
+      readOnly: true,
+    },
+    {
+      name: 'price',
+      title: 'Price',
+      type: 'string',
+      description: 'This comes from Shopify and cannot be changed',
+      readOnly: true,
+    },
+    {
+      name: 'availableForSale',
+      title: 'Available For Sale',
+      type: 'boolean',
+      description: 'This comes from Shopify and cannot be changed',
+      readOnly: true,
+    },
+    {
+      name: 'compareAtPrice',
+      title: 'Compare at Price',
+      type: 'string',
+      description: 'This comes from Shopify and cannot be changed',
+      readOnly: true,
+    },
+    {
+      name: 'options',
+      title: 'Options',
+      description: 'This comes from Shopify and cannot be changed',
+      type: 'array',
+      of: [{ type: 'variantOptions' }],
+      readOnly: true,
+    },
+  ],
+};

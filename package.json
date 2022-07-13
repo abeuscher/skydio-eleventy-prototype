@@ -1,0 +1,21 @@
+{
+  "name": "skydio-prototype-1.0.0",
+  "version": "1.0.0",
+  "description": "Sketch of website structure for skydio using 11ty.",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run build --parallel",
+    "dev": "lerna run dev --parallel",
+    "format": "lerna run format",
+    "build-studio": "lerna bootstrap && cd studio && npm run build",
+    "build-web": "lerna bootstrap && cd web && npm run build",
+    "lint": "lerna run lint",
+    "postinstall": "lerna bootstrap",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Skydio Web Team",
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.16.4"
+  }
+}

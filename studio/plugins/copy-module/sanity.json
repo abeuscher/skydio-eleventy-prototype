@@ -1,0 +1,8 @@
+{
+  "parts": [
+    {
+      "implements": "part:@sanity/form-builder/input/array/functions",
+      "path": "CopyToModule.js"
+    }
+  ]
+}
