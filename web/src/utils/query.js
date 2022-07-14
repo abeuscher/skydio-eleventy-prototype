@@ -26,7 +26,7 @@ const siteConfigQuery = `*[_type == "siteConfig"] {
 const queryDocuments = async (type, includeDrafts = false) => {
   // TODO: set includeDrafts to true if we're in preview mode
   const query =
-    includeDrafts || !process.env.NODE_ENV || process.env.NODE_END === "development"
+    includeDrafts || !process.env.NODE_ENV || process.env.NODE_ENV === "development"
       ? documentsByTypeWithDraftsQuery
       : documentsByTypeQuery;
   const results = await client
