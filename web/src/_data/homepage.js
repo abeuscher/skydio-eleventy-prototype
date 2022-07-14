@@ -1,17 +1,7 @@
-const groq = require("groq");
-const client = require("../utils/sanityClient");
+const query = require("../utils/query");
+const createPageContext = require("../utils/createPageContext");
+
 module.exports = async function () {
-  const homeid = await client.fetch(groq`
-    *[_type == "siteConfig"]{
-      ...,
-    }[0].frontpage._ref
-  `);
-  return await client.fetch(
-    groq`
-*[_type == "landingPage" && _id==$homeid]{
-      ...,
-    }[0]
-  `,
-    { homeid: homeid }
-  );
+  const data = await query.getHomepage();
+  return [createPageContext(data)];
 };

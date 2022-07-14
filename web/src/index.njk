@@ -1,10 +1,17 @@
 ---
 layout: layouts/home.njk
 title: Home Page
+pagination:
+  alias: context
+  size: 1
+  data: homepage
+permalink: /
 ---
-<h1>Hello World</h1>
-<p>Title: {{homepage.content.main.title}}</p>
-{% for module in homepage.content.main.modules %}
+HOMEPAGE TEMPLATE
+{% set page = context.data %}
+
+<h1>{{page.content.main.title}}</h1>
+{% for module in page.content.main.modules %}
     {% set currentModule = module %}
     {% include "modules/" + module._type + "/index.njk" ignore missing %}
 {% endfor %}

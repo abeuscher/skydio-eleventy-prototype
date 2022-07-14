@@ -1,0 +1,18 @@
+---
+layout: layouts/home.njk
+pagination:
+  alias: context
+  size: 1
+  data: landingPages
+permalink: /{{ context.localePath }}/index.html
+renderData:
+  title: "{{context.page.content.main.title}}"
+---
+LANDING PAGE TEMPLATE
+{% set page = context.data %}
+
+<h1>{{page.content.main.title}}</h1>
+{% for module in page.content.main.modules %}
+  {% set currentModule = module %}
+  {% include "modules/" + module._type + "/index.njk" ignore missing %}
+{% endfor %}
