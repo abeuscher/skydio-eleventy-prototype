@@ -1,0 +1,10 @@
+---
+layout: layouts/home.njk
+title: Home Page
+---
+<h1>Hello World</h1>
+<p>Title: {{homepage.content.main.title}}</p>
+{% for module in homepage.content.main.modules %}
+    {% set currentModule = module %}
+    {% include "modules/" + module._type + "/index.njk" ignore missing %}
+{% endfor %}
