@@ -11,11 +11,11 @@
   </head>
   <body>
     {% block header %}
-      {% include "layouts/inc/header.njk" %}
+      {% pug "layouts/inc/header.pug", header %}
     {% endblock %}
     {{ content | safe }}
     {% block footer %}
-      {% include "layouts/inc/footer.njk" %}
+      {% pug "layouts/inc/footer.pug", footer %}
     {% endblock %}
   </body>
 </html>
