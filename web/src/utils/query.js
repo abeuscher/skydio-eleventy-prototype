@@ -15,13 +15,13 @@ const documentsByTypeQuery = `{
     'results': *[_type == $type && !(_id in path("drafts.**"))]
     }`;
 
-const homepageQuery = `*[_type == "landingPage" && _id==$homeid] {
-      ...,
-    }[0]`;
-
 const siteConfigQuery = `*[_type == "siteConfig"] {
       ...,
     }[0]`;
+
+const querySiteConfig = async () => {
+  return client.fetch(siteConfigQuery);
+}
 
 const queryDocuments = async (type, includeDrafts = false) => {
   // TODO: set includeDrafts to true if we're in preview mode
@@ -30,17 +30,12 @@ const queryDocuments = async (type, includeDrafts = false) => {
       ? documentsByTypeWithDraftsQuery
       : documentsByTypeQuery;
   const results = await client
-    .fetch(query, { type: "landingPage" })
+    .fetch(query, { type })
     .catch((err) => console.error(err));
   return results.results || [];
 };
 
-const queryHomepage = async () => {
-  const config = await client.fetch(siteConfigQuery);
-  return await client.fetch(homepageQuery, { homeid: config.frontpage._ref });
-};
-
 module.exports = {
   getDocuments: queryDocuments,
-  getHomepage: queryHomepage,
+  getSiteConfig: querySiteConfig,
 };
