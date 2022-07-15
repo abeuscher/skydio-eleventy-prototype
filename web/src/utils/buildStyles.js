@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const sass = require("node-sass");
+const sass = require("sass");
 
 const globalStyles = sass.renderSync({
   file: path.join(__dirname, "../styles/style.scss"),
