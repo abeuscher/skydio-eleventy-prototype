@@ -1,5 +1,4 @@
 ---
-layout: layouts/home.njk
 title: Home Page
 pagination:
   alias: context
@@ -7,11 +6,15 @@ pagination:
   data: homepage
 permalink: /
 ---
+{% extends "layouts/home.njk" %}
+
 HOMEPAGE TEMPLATE
 {% set page = context.data %}
 
-<h1>{{page.content.main.title}}</h1>
-{% for module in page.content.main.modules %}
-    {% set currentModule = module %}
-    {% include "modules/" + module._type + "/index.njk" ignore missing %}
-{% endfor %}
+{% block content %}
+  <h1>{{page.content.main.title}}</h1>
+  {% for module in page.content.main.modules %}
+      {% set currentModule = module %}
+      {% include "modules/" + module._type + "/index.njk" ignore missing %}
+  {% endfor %}
+{% endblock %}

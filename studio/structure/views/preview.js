@@ -5,7 +5,7 @@ import S from '@sanity/desk-tool/structure-builder';
 const remoteURL = process.env.SANITY_STUDIO_SITE_URL
   ? `${process.env.SANITY_STUDIO_SITE_URL}/previews`
   : null;
-const localURL = 'http://localhost:8000/previews';
+const localURL = 'http://localhost:8082/preview';
 const previewURL =
   window.location.hostname === 'localhost' ? localURL : remoteURL;
 
