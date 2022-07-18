@@ -9,11 +9,9 @@ const renderPug = function (pugFile, data) {
   const key = crypto.createHash("md5").update(`${pugFile}${data}`).digest("hex");
 
   if (!developmentMode && rendered[key]) {
-    console.log("Using cached rendered pug");
     return rendered[key];
   }
 
-  console.log("Rendering pug");
   rendered[key] = pug.renderFile(path.join(__dirname, `../_includes/${pugFile}`), data);
 
   return rendered[key];
