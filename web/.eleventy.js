@@ -4,6 +4,7 @@ const util = require("util");
 const urlFor = require("./src/utils/imageUrl");
 const buildStyles = require("./src/utils/buildStyles");
 const renderPugPlugin = require("./src/utils/renderPug");
+const classNames = require("./src/utils/classNames");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("debug", function (value) {
@@ -23,6 +24,7 @@ module.exports = function (eleventyConfig) {
     copy: ["src/utils/", "src/styles/", "src/client-config.js", { from: ".cache", to: "cache" }],
   });
   eleventyConfig.addPlugin(renderPugPlugin);
+  eleventyConfig.addFilter("classnames", classNames);
   return {
     dir: {
       input: "src",
