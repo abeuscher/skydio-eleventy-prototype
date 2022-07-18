@@ -1,22 +1,23 @@
 const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
 const util = require("util");
 // const pluginSass = require("eleventy-plugin-sass");
-const urlFor = require("./src/utils/imageUrl");
 const buildStyles = require("./src/utils/buildStyles");
 const renderPugPlugin = require("./src/utils/renderPug");
 const classNames = require("./src/utils/classNames");
+const imagePlugin = require("./src/utils/plugins/imageUrl")
+const sanityClient = require("./src/utils/sanityClient");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("debug", function (value) {
     return util.inspect(value, { compact: false });
   });
   // eleventyConfig.addPlugin(pluginSass);
-  eleventyConfig.addShortcode("imageUrlFor", (image, width = "400") => {
-    return urlFor(image).width(width).auto("format");
-  });
-  eleventyConfig.addShortcode("croppedUrlFor", (image, width, height) => {
-    return urlFor(image).width(width).height(height).auto("format");
-  });
+  // eleventyConfig.addShortcode("imageUrlFor", (image, width = "400") => {
+  //   return urlFor(image).width(width).auto("format");
+  // });
+  // eleventyConfig.addShortcode("croppedUrlFor", (image, width, height) => {
+  //   return urlFor(image).width(width).height(height).auto("format");
+  // });
   eleventyConfig.addPlugin(buildStyles);
   eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
     name: "ssr",
@@ -25,6 +26,7 @@ module.exports = function (eleventyConfig) {
   });
   eleventyConfig.addPlugin(renderPugPlugin);
   eleventyConfig.addFilter("classnames", classNames);
+  eleventyConfig.addPlugin(imagePlugin, { client: sanityClient });
   return {
     dir: {
       input: "src",
