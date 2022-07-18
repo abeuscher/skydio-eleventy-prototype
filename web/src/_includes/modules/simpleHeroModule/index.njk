@@ -1,4 +1,10 @@
-<div className="simple-hero-module bgc-black color-white pb-3 pb-md-7" style="background-image:url('{% imageUrlFor currentModule.bgImage.asset %}');">
+
+<div className="{{ {
+  "simple-hero-module bgc-black color-white pb-3 pb-md-7": true,
+  "simple-hero-module--header-image": currentModule.headerImage,
+  "{{ currentModule.headerImage}}": currentModule.headerImage
+} | classnames }}" style="background-image:url('{% imageUrlFor currentModule.bgImage.asset %}');">
+
     <div className="hero-text container--medium container">
         <div className="col-xs-full image-content">
             {% if currentModule.headerImage %}
