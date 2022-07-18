@@ -13,11 +13,11 @@
     {% inlineStyles context %}
 
     {% block header %}
-      {% include "layouts/inc/header.njk" %}
+      {% pug "layouts/inc/header.pug", header %}
     {% endblock %}
     {% block content %}{% endblock %}
     {% block footer %}
-      {% include "layouts/inc/footer.njk" %}
+      {% pug "layouts/inc/footer.pug", footer %}
     {% endblock %}
   </body>
 </html>

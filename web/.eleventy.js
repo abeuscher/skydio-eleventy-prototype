@@ -3,6 +3,7 @@ const util = require("util");
 // const pluginSass = require("eleventy-plugin-sass");
 const urlFor = require("./src/utils/imageUrl");
 const buildStyles = require("./src/utils/buildStyles");
+const renderPugPlugin = require("./src/utils/renderPug");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("debug", function (value) {
@@ -21,6 +22,7 @@ module.exports = function (eleventyConfig) {
     functionsDir: "./netlify/functions/",
     copy: ["src/utils/", "src/styles/", "src/client-config.js", { from: ".cache", to: "cache" }],
   });
+  eleventyConfig.addPlugin(renderPugPlugin);
   return {
     dir: {
       input: "src",

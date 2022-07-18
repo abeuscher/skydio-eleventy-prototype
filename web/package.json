@@ -25,6 +25,11 @@
     "markdown-it": "^10.0.0",
     "markdown-it-anchor": "^5.2.5",
     "netlify-plugin-cache": "^1.0.3",
-    "sass": "^1.53.0"
+    "sass": "^1.53.0",
+    "pug": "^3.0.2"
+  },
+  "dependencies": {
+    "@sanity/image-url": "^1.0.1",
+    "eleventy-plugin-sass": "^1.2.0"
   }
 }
