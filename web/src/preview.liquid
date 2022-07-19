@@ -1,0 +1,9 @@
+---
+permalink:
+  ssr: /preview/:id
+---
+{% layout "layouts/home.liquid" %}
+{% block content %}
+  {% assign page = preview.data %}
+  {% render "modules/{{page._type}}Content/index.liquid" %}
+{% endblock %}

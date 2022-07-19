@@ -7,10 +7,9 @@ permalink: /{{ context.localePath }}/index.html
 renderData:
   title: "{{context.page.content.main.title}}"
 ---
-{% extends "layouts/home.njk" %}
+{% layout "layouts/home.liquid" %}
 
 LANDING PAGE TEMPLATE
 {% block content %}
-  {% set page = context.data %}
-  {% include "modules/landingPageContent/index.njk" %}
+  {% render "modules/landingPageContent/index.liquid" %}
 {% endblock %}

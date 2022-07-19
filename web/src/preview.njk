@@ -1,9 +1,0 @@
----
-permalink:
-  ssr: /preview/:id
----
-{% extends "layouts/home.njk" %}
-{% block content %}
-  {% set page = preview.data %}
-  {% include "modules/" + page._type + "Content/index.njk" ignore missing %}
-{% endblock %}

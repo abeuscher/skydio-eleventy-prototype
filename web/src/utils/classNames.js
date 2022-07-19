@@ -1,6 +1,7 @@
 module.exports = (classNames) => {
   let classNamesString = "";
-  Object.keys(classNames).forEach((key) => {
+  const classObj = JSON.parse(classNames);
+  Object.keys(classObj).forEach((key) => {
     if (classNames[key]) {
       classNamesString += ` ${key}`;
     }

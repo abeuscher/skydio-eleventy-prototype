@@ -6,6 +6,8 @@ const renderPugPlugin = require("./src/utils/renderPug");
 const classNames = require("./src/utils/classNames");
 const imagePlugin = require("./src/utils/plugins/imageUrl")
 const sanityClient = require("./src/utils/sanityClient");
+const fs = require("fs");
+const path = require("path");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("debug", function (value) {
@@ -23,6 +25,11 @@ module.exports = function (eleventyConfig) {
     name: "ssr",
     functionsDir: "./netlify/functions/",
     copy: ["src/utils/", "src/styles/", "src/client-config.js", { from: ".cache", to: "cache" }],
+  });
+  eleventyConfig.addFilter("checkExists", function (value) {
+    if (!value) return null;
+    const pathToCheck = path.join(__dirname, `src/_includes/${value._type}/index.liquid`);
+    return fs.existsSync(pathToCheck) ? value : null;
   });
   eleventyConfig.addPlugin(renderPugPlugin);
   eleventyConfig.addFilter("classnames", classNames);

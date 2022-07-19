@@ -6,15 +6,15 @@ pagination:
   data: homepage
 permalink: /
 ---
-{% extends "layouts/home.njk" %}
+{% layout "layouts/home.liquid" %}
 
 HOMEPAGE TEMPLATE
-{% set page = context.data %}
+{% assign page = context.data %}
 
 {% block content %}
   <h1>{{page.content.main.title}}</h1>
   {% for module in page.content.main.modules %}
-      {% set currentModule = module %}
-      {% include "modules/" + module._type + "/index.njk" ignore missing %}
+      {% assign currentModule = module %}
+      {% render "modules/{{module._type}}/index.liquid", currentModule: module %}
   {% endfor %}
 {% endblock %}

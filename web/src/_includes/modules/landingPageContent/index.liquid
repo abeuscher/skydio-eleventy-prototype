@@ -1,0 +1,9 @@
+<h1>{{page.content.main.title}}</h1>
+{% for module in page.content.main.modules %}
+  {{ module._type }}
+  {% assign currentModule = module | checkExists %}
+
+  {% if currentModule %}
+    {% render "modules/{{currentModule._type}}/index.liquid" %}
+  {% endif %}
+{% endfor %}
