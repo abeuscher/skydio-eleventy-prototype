@@ -1,0 +1,184 @@
+/* =============================================
+=            Colors            =
+============================================= */
+
+// List all palette colours from design file here
+$palette: (
+  'white': #fff,
+  'grey-10': #fbfbff,
+  'grey-20': #dadada,
+  'grey-30': #b2b2b2,
+  'grey-40': #979797,
+  'grey-50': #666,
+  'grey-60': #515151,
+  'grey-70': #333,
+  'grey-80': #262626,
+  'grey-90': #0f0f0f,
+  'black': #000,
+  'purple': purple,
+  'green': forestgreen,
+) !default;
+
+$theme-colors: (
+  primary: map-get($palette, purple),
+  secondary: map-get($palette, green)
+) !default;
+
+// Type
+$color-body: #000 !default;
+$color-link: #00e !default;
+
+/* =====  End of Colors  ====== */
+
+/* =============================================
+=            Typography            =
+============================================= */
+
+$font-primary: Georgia, Times, "Times New Roman", serif !default;
+$font-secondary: "Open Sans", "Helvetica Neue", sans-serif !default;
+
+// Type setting properties can be defined directly
+// in each setting's map, or within a nested map that corresponds
+// to a breakpoint from $grid-settings, or a mix of both
+$type-styles: (
+  h1: (
+    font-family: $font-secondary,
+    font-size: rem(40),
+    line-height: 1.2,
+    lg: (
+      font-size: rem(72),
+      line-height: 1.11,
+    ),
+  ),
+  h2: (
+    font-family: $font-secondary,
+    font-size: rem(32),
+    line-height: 1.25,
+    lg: (
+      font-size: rem(60),
+      line-height: 1.2,
+    ),
+  ),
+  h3: (
+    font-family: $font-secondary,
+    font-size: rem(28),
+    line-height: 1.14,
+    lg: (
+      font-size: rem(48),
+      line-height: 1.66,
+    ),
+  ),
+  h4: (
+    font-family: $font-secondary,
+    font-size: rem(20),
+    line-height: 1.2,
+    lg: (
+      font-size: rem(36),
+      line-height: 1.66,
+    ),
+  ),
+  h5: (
+    font-family: $font-secondary,
+    font-size: rem(16),
+    line-height: 1.25,
+    lg: (
+      font-size: rem(24),
+      line-height: 1.33,
+    ),
+  ),
+  h6: (
+    font-family: $font-secondary,
+    font-size: rem(16),
+    line-height: 1.5,
+    lg: (
+      font-size: rem(20),
+      line-height: 1.4,
+    ),
+  ),
+  body-1: (
+    font-family: $font-primary,
+    font-size: rem(16),
+    line-height: 1.5,
+  ),
+  button: (
+    font-family: $font-secondary,
+    font-size: rem(16),
+    line-height: 1.5,
+  ),
+) !default;
+
+/* =====  End of Typography  ====== */
+
+/* =============================================
+=            Layout            =
+============================================= */
+
+// Container max-width
+$max-width: rem(1560) !default;
+
+// Base gutter for grid items
+$grid-gutter: rem(16) !default;
+
+// Master map for grid settings at different sizes
+// Adjust settings here to update the grid globally
+// media mixin converts breakpoints to em units
+$grid-settings: (
+  xs: (
+    breakpoint: 0,
+    padding: $grid-gutter,
+    gutter: $grid-gutter,
+    columns: 4,
+  ),
+  sm: (
+    breakpoint: 576px,
+    padding: $grid-gutter,
+    gutter: $grid-gutter,
+    columns: 8,
+  ),
+  md: (
+    breakpoint: 768px,
+    padding: $grid-gutter * 1.5,
+    gutter: $grid-gutter * 1.5,
+    columns: 12,
+  ),
+  lg: (
+    breakpoint: 1024px,
+    padding: 48px,
+    gutter: $grid-gutter * 1.5,
+    columns: 12,
+  ),
+  xl: (
+    breakpoint: 1280px,
+    padding: 60px,
+    gutter: $grid-gutter * 1.5,
+    columns: 12,
+  ),
+) !default;
+
+// Layout spacing
+// 4px, 8px, 12px, 16px, 24px, 36px, 52px, 76px, 112px
+$spacer: 0.5rem !default; // 8px
+
+// prettier-ignore
+$spacers: (
+  0: 0,
+  1: $spacer * 0.5, // 4px
+  2: $spacer,       // 8px
+  3: $spacer * 1.5, // 12px
+  4: $spacer * 2,   // 16px
+  5: $spacer * 3,   // 24px
+  6: $spacer * 4.5, // 36px
+  7: $spacer * 6.5, // 52px
+  8: $spacer * 9.5, // 76px
+  9: $spacer * 14   // 112px
+) !default;
+
+$z-index: (
+  hidden: -1,
+  base: 0,
+  media: 1,
+  modal: 10,
+  takeover: 20,
+) !default;
+
+/* =====  End of Layout  ====== */

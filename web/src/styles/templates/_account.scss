@@ -1,0 +1,54 @@
+/* TODO: Look at whether this is used outside of the project */
+.account-header {
+  @include grid-col-start-end(
+    (
+      xs: 1 -1,
+      md: 2 12,
+    )
+  );
+
+  padding-top: space(7);
+  padding-bottom: space(7);
+
+  @include media($min: bp(md)) {
+    padding-top: space(8);
+    padding-bottom: space(8);
+  }
+}
+
+.account-title {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.account-action-link {
+  display: inline-block;
+  margin-top: space(3);
+}
+
+// Login
+.sign-in-password {
+  position: relative;
+
+  .forgot-password-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+// Address
+.account-address-block {
+  border-top: 2px solid $color-border;
+
+  &:last-child {
+    border-bottom: 2px solid $color-border;
+  }
+}
+
+.account-address {
+  p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}

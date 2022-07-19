@@ -1,0 +1,62 @@
+// Basic button properties
+@mixin button() {
+  @include reset-button;
+  @include type-style(button);
+
+  display: inline-block;
+  padding: rem(17 68);
+  color: $color-body;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  border-radius: 3px;
+  user-select: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+// Specific button style
+@mixin button-style($style) {
+  @if $style == primary {
+    color: $color-button-primary;
+    background-color: theme-color($style);
+    transition: background-color 150ms ease-out;
+
+    &:hover {
+      background-color: darken(theme-color($style), 3.92);
+    }
+  }
+
+  @if $style == secondary {
+    color: theme-color("primary");
+    background-color: $color-button-primary;
+    box-shadow: inset 0 0 0 1px theme-color("primary");
+  }
+
+  @if $style == tertiary {
+    color: $color-button-primary;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 1px $color-button-primary;
+  }
+
+  @if $style == plain {
+    color: theme-color("primary");
+    background-color: transparent;
+    box-shadow: none;
+    padding: 0;
+  }
+}
+
+// Buttons size
+@mixin button-size($size) {
+  @if $size == small {
+    padding: rem(9 20);
+  }
+
+  @if $size == large {
+    padding: space(4 5);
+  }
+}

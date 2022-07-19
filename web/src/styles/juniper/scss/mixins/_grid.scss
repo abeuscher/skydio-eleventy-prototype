@@ -1,0 +1,115 @@
+@mixin grid() {
+  $gutter: get-grid-setting(get-key-from-index($grid-settings, 1), gutter);
+  $columns: get-grid-setting(get-key-from-index($grid-settings, 1), columns);
+
+  display: grid;
+  grid-gap: $gutter;
+  grid-template-columns: repeat($columns, minmax(0, 1fr));
+
+  // Loop through the $grid-settings and adjust the grid's
+  // negative margin and column count,
+  // if values change for the current size
+  @each $breakpoint in map-keys($grid-settings) {
+    @include media($min: bp($breakpoint)) {
+      @if ($gutter != get-grid-setting($breakpoint, gutter)) {
+        $gutter: get-grid-setting($breakpoint, gutter);
+
+        grid-gap: $gutter;
+      }
+
+      @if ($columns != get-grid-setting($breakpoint, columns)) {
+        $columns: get-grid-setting($breakpoint, columns);
+
+        grid-template-columns: repeat($columns, minmax(0, 1fr));
+      }
+    }
+  }
+}
+
+// Sets up a nested subgrid that has the same grid-gap as the main grid.
+// Useful for situations where the parent column might have
+// mutiple children columns that use conform to the grid.
+//
+// 2 syntaxes:
+// Optimized for utilty class creation / use within a single media query:
+// Usage: @include subgrid(3 11, md);
+//
+// Custom class / responsive css rules:
+// Usage: @include subgrid((md: 3 11, lg: 4 10));
+@mixin subgrid($start-end, $breakpoint: null) {
+  display: grid;
+
+  @if type-of($start-end) == list {
+    $start: nth($start-end, 1);
+    $end: nth($start-end, 2);
+    $gutter: get-grid-setting($breakpoint, gutter);
+    $columns: $end - $start;
+
+    grid-gap: $gutter;
+    grid-template-columns: repeat($columns, minmax(0, 1fr));
+    grid-column-start: $start;
+    grid-column-end: $end;
+  }
+
+  @if type-of($start-end) == map {
+    @each $breakpoint, $value in $start-end {
+      @include media-up($breakpoint) {
+        $start: nth($value, 1);
+        $end: nth($value, 2);
+        $gutter: get-grid-setting($breakpoint, gutter);
+        $columns: $end - $start;
+
+        grid-gap: $gutter;
+        grid-template-columns: repeat($columns, minmax(0, 1fr));
+        grid-column-start: $start;
+        grid-column-end: $end;
+      }
+    }
+  }
+}
+
+// Set the column span for a grid item.
+//
+// Accepts either a single number or a map of breakpoints and spans
+// Usage: @include grid-col-span((xs: 2, lg: 4))
+// Usage: @include grid-col-span(2)
+@mixin grid-col-span($span: 1) {
+  @if type-of($span) == number {
+    grid-column-start: span $span;
+    grid-column-end: auto;
+  }
+
+  @if type-of($span) == map {
+    @each $breakpoint in map-keys($span) {
+      $col-span: map-get($span, $breakpoint);
+
+      @include media-up($breakpoint) {
+        grid-column-start: span $col-span;
+        grid-column-end: auto;
+      }
+    }
+  }
+}
+
+// Set the column start and end for a grid item
+// Can be applied on a single breakpoint be setting $start and $end explicitly
+// Or can be applied at multiple breakpoints with a map and a space separated list
+// of start and end values.
+//
+// Usage: @include grid-col-start-end(2 4);
+// Usage: @include grid-col-start-end((xs: 2 4, sm: 2 8, md: 4 10));
+@mixin grid-col-start-end($start-end) {
+  @if type-of($start-end) == map {
+    @each $breakpoint, $value in $start-end {
+      @include media-up($breakpoint) {
+        grid-column-start: nth($value, 1);
+        grid-column-end: nth($value, 2);
+      }
+    }
+  }
+
+  @if type-of($start-end) == list {
+    grid-column-start: nth($start-end, 1);
+    grid-column-end: nth($start-end, 2);
+  }
+}

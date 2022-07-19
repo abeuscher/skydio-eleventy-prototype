@@ -1,0 +1,29 @@
+{%- macro metaName(name, content) -%}
+  {%- if content %}<meta name="{{ name }}" content="{{ content }}">{% endif -%}
+{%- endmacro -%}
+
+{% macro metaProperty(property, content) %}
+  {% if property %}<meta property="{{ property }}" content="{{ content }}">{% endif %}
+{% endmacro %}
+
+{% macro metaAttributes(page, global, overrides) -%}
+  {% set c = page.content %}
+  {% set meta = c.meta %}
+  {% set description = overrides.description or c.main.description or meta.description or global.description %}
+  {% set keywords = overrides.keywords or meta.keywords or globalMeta.keywords %}
+  {% set title = overrides.title or meta.title or globalMeta.title or global.title %}
+  {% set url = overrides.url or global.site.url %}
+  {% set socialImageThumb = overrides.image.asset.url or meta.socialImage.asset.url or global.meta.socialImage.asset.url %}
+
+  {{- metaName("description", description) }}
+  {{- metaName("keywords", keywords) }}
+  {{- metaProperty("og:title", meta.ogTitle or title) }}
+  {{- metaProperty("og:description", meta.ogDescription or description) }}
+  {{- metaProperty("og:url", url) }}
+  {{- metaProperty("og:type", "website") }}
+  {{- metaProperty("og:image", socialImageThumb) }}
+  {{- metaName("twitter:card", meta.twitterCardType or "summary_large_image") }}
+  {{- metaName("twitter:creator", global.site.author) }}
+  {{- metaName("twitter:title", meta.twitterTitle or title) }}
+  {{- metaName("twitter:image", meta.twitterThumb.asset.url or socialImageThumb) }}
+{%- endmacro %}

@@ -16,7 +16,14 @@ module.exports = async function () {
     }
   }
 
+  const config = await query.getSiteConfig();
   const docs = await query.getDocuments("landingPage", true);
+  const homepage = docs.filter((context) => context._id === config.frontpage._ref).pop();
+
+  if (homepage) {
+    homepage.content.main.slug.current = "/";
+  }
+
   const contexts = docs.map((doc) => createPageContext(doc));
 
   const assetCache = new AssetCache("landingPages", ".cache", {

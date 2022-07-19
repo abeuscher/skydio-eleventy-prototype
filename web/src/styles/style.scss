@@ -1,7 +1,47 @@
-body {
-  background: black;
-  color: white;
-  h1 {
-    color: yellow;
-  }
-}
+@charset "UTF-8";
+
+// Package imports
+@import "./normalize.css/normalize";
+@import "./swiper/swiper";
+@import "./swiper/modules/navigation/navigation";
+@import "./swiper/modules/pagination/pagination";
+
+// Import unit functions in order to set some vars
+@import "juniper/scss/functions/_units";
+
+// Settings
+@import "./settings/fonts";
+@import "./settings/variables";
+
+// Juniper
+@import "juniper/index";
+
+// Mixins
+@import "./mixins/forms";
+@import "./mixins/buttons";
+@import "./mixins/gradients";
+
+// Core
+@import "./core/base";
+@import "./core/typography";
+@import "./core/forms";
+@import "./core/buttons";
+@import "./core/animations";
+@import "./core/print";
+
+// Components
+@import "./components/external-overrides";
+
+// Blog
+@import "./components/blog/article";
+@import "./components/blog/featured-article";
+@import "./components/blog/index-page";
+
+// Content Modules
+@import "./components/modules/content-modules";
+@import "./components/modules/hero";
+@import "./components/modules/product-feature";
+
+// Templates
+@import "./templates/account";
+@import "./templates/product";

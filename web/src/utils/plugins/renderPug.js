@@ -12,7 +12,7 @@ const renderPug = function (pugFile, data) {
     return rendered[key];
   }
 
-  rendered[key] = pug.renderFile(path.join(__dirname, `../_includes/${pugFile}`), data);
+  rendered[key] = pug.renderFile(path.join(__dirname, `../../_includes/${pugFile}`), data);
 
   return rendered[key];
 };

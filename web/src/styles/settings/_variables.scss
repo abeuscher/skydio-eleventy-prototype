@@ -1,0 +1,563 @@
+/* =============================================
+=            Colors            =
+============================================= */
+
+// TODO: May want to add a "grey" map with 100-900 values
+$palette: (
+  black: #000,
+  white: #fff,
+  grey-02: #fbfbff,
+  grey-03: #f1f1f1,
+  grey-10: #f8f8f8,
+  grey-12: #e5e5e5,
+  grey-15: #efefef,
+  grey-20: #dadada,
+  grey-30: #b2b2b2,
+  grey-33: #b4b4b4,
+  grey-40: #979797,
+  grey-45: #888,
+  grey-50: #666,
+  grey-55: #676767,
+  grey-56: #4d4d4d,
+  grey-60: #4e4e4e,
+  grey-65: #585858,
+  grey-67: #848484,
+  grey-68: #888888,
+  grey-69: #858585,
+  grey-70: #333,
+  grey-80: #262626,
+  grey-81: #272727,
+  grey-84: #181818,
+  grey-85: #1a1a1a,
+  grey-86: #101012,
+  grey-90: #0f0f0f,
+  dark-orange: #2f291b,
+  blue: #07f,
+  blue-5: #f2f8ff,
+  pink: #ef3ba8,
+  yellow: #ffbd2e,
+);
+
+$theme-colors: (
+  primary: map-get($palette, blue),
+);
+
+// Type
+$color-body: #000;
+$color-link: #00e;
+$color-button-primary: #fff;
+
+// General
+$color-border: map-get($palette, grey-20);
+
+// Forms
+$color-input-border: #000;
+
+/* =====  End of Colors  ====== */
+
+/* =============================================
+=            Typography            =
+============================================= */
+
+// Type setting properties can be defined directly
+// in each setting's map, or within a nested map that corresponds
+// to a breakpoint from $grid-settings, or a mix of both
+// TODO: Copy over typography tokens from Figma
+
+$fontstack-gilroy: "Gilroy", Arial, sans-serif;
+$fontstack-blender: "Blender Pro", Arial, sans-serif;
+
+$type-styles: (
+  hero: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(56),
+    font-weight: 600,
+    line-height: 86.5%,
+    letter-spacing: -0.03em,
+    sm: (
+      line-height: 1,
+      font-weight: bold,
+      font-size: clamp(#{rem(56)}, 10vw, #{rem(96)}),
+    ),
+  ),
+  hero-sub: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(24),
+    font-weight: 600,
+    line-height: rem(29),
+    letter-spacing: -0.03em,
+    sm: (
+      line-height: 1,
+      font-weight: 600,
+      font-size: rem(56),
+    ),
+  ),
+  h1: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(40),
+    font-weight: 600,
+    line-height: 110%,
+    letter-spacing: -0.03em,
+    sm: (
+      font-size: rem(60),
+    ),
+  ),
+  h2: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(24),
+    font-weight: 600,
+    line-height: 140%,
+    sm: (
+      font-size: rem(32),
+    ),
+  ),
+  h2-alt: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(24),
+    font-weight: 600,
+    line-height: 110%,
+    letter-spacing: -0.03em,
+    sm: (
+      font-size: rem(40),
+    ),
+  ),
+  h3: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(20),
+    font-weight: bold,
+    line-height: 110%,
+    sm: (
+      font-size: rem(24),
+    ),
+  ),
+  h4: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(24),
+    font-weight: 600,
+    line-height: 110%,
+    sm: (
+      font-weight: bold,
+    ),
+  ),
+  subtitle: (
+    font-family: $fontstack-blender,
+    font-size: rem(16),
+    line-height: 100%,
+    text-transform: uppercase,
+  ),
+  badge: (
+    display: inline-block,
+    border: 1px solid,
+    border-radius: 2px,
+    padding: rem(6) rem(8) rem(5),
+    text-transform: uppercase,
+    line-height: 1,
+  ),
+  body-1: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(20),
+    font-weight: 400,
+    line-height: 132%,
+    sm: (
+      font-size: rem(24),
+    ),
+  ),
+  body-2: (
+    font-family: $fontstack-blender,
+    font-size: rem(18),
+    line-height: 120%,
+    sm: (
+      font-size: rem(24),
+    ),
+  ),
+  body-3: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(16),
+    font-weight: 400,
+    line-height: 132%,
+    sm: (
+      font-size: rem(20),
+    ),
+  ),
+  body-4: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(15),
+    font-weight: 500,
+    line-height: 140%,
+  ),
+  body-light: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(15),
+    line-height: 140%,
+    sm: (
+      font-size: rem(20),
+      line-height: 132%,
+    ),
+  ),
+  button: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(14),
+    font-weight: bold,
+    line-height: 100%,
+    text-transform: uppercase,
+    text-decoration: none,
+  ),
+  button-subtext: (
+    font-family: $fontstack-blender,
+    font-size: rem(12),
+    font-weight: bold,
+    line-height: 100%,
+  ),
+  caption: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(18),
+    font-weight: bold,
+    line-height: 100%,
+  ),
+  figure-caption: (
+    font-family: $fontstack-blender,
+    font-size: rem(15),
+    line-height: 120%,
+  ),
+  slider: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(14),
+    font-weight: 400,
+    line-height: rem(20),
+  ),
+  select: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(16),
+    font-weight: 400,
+    line-height: rem(20),
+    md: (
+      font-size: rem(14),
+    ),
+  ),
+  currency: (
+    font-family: $fontstack-blender,
+    font-size: rem(32),
+    font-weight: 500,
+    line-height: 120%,
+  ),
+  dropdown: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(18),
+    font-weight: 400,
+  ),
+  note: (
+    font-family: $fontstack-blender,
+    font-size: rem(14),
+    line-height: 100%,
+    text-transform: uppercase,
+  ),
+  controls: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(32),
+    font-weight: 600,
+    line-height: 140%,
+    sm: (
+      font-size: rem(56),
+    ),
+  ),
+  product-title: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(40),
+    font-weight: 600,
+    line-height: 110%,
+    letter-spacing: -0.03em,
+  ),
+  menu: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(15),
+    line-height: 140%,
+    font-weight: normal,
+    text-transform: none,
+  ),
+  menu-parent: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(15),
+    line-height: 140%,
+    font-weight: bold,
+    text-transform: none,
+  ),
+  job-title: (
+    font-family: $fontstack-blender,
+    font-size: rem(16),
+    line-height: 100%,
+    font-weight: bold,
+  ),
+  article-item-title: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(24),
+    font-weight: 500,
+    line-height: 130%,
+  ),
+  pullquote: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(22),
+    font-weight: 600,
+    line-height: 120%,
+    letter-spacing: -0.03em,
+    sm: (
+      font-size: rem(32),
+    ),
+  ),
+  new-hero: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(34),
+    line-height: 1.2,
+    font-weight: 400,
+    sm: (
+      font-size: rem(44),
+    ),
+    md: (
+      font-size: rem(90),
+    ),
+    lg: (
+      font-size: rem(100),
+    ),
+  ),
+  new-h1: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(28),
+    line-height: 1.2,
+    font-weight: 400,
+    sm: (
+      font-size: rem(40),
+    ),
+    md: (
+      font-size: rem(52),
+    ),
+    lg: (
+      font-size: rem(64),
+    ),
+  ),
+  new-h2: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(24),
+    line-height: 1.2,
+    font-weight: 400,
+    sm: (
+      font-size: rem(32),
+    ),
+    md: (
+      font-size: rem(40),
+    ),
+    lg: (
+      font-size: rem(52),
+    ),
+  ),
+  new-h3: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(20),
+    line-height: 1.2,
+    font-weight: 700,
+    sm: (
+      font-size: rem(24),
+    ),
+    md: (
+      font-size: rem(28),
+    ),
+    lg: (
+      font-size: rem(32),
+    ),
+  ),
+  new-h4: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(16),
+    line-height: 1.2,
+    font-weight: 900,
+    sm: (
+      font-size: rem(18),
+    ),
+    md: (
+      font-size: rem(20),
+    ),
+    lg: (
+      font-size: rem(24),
+    ),
+  ),
+  new-body: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(16),
+    line-height: 1.4,
+    font-weight: 600,
+    sm: (
+      font-size: rem(18),
+    ),
+    md: (
+      font-size: rem(20),
+    ),
+    lg: (
+      font-size: rem(24),
+    ),
+  ),
+  new-body-small: (
+    font-family: $fontstack-gilroy,
+    font-size: rem(13),
+    line-height: 1.2,
+    font-weight: 600,
+    sm: (
+      font-size: rem(14),
+    ),
+    md: (
+      font-size: rem(16),
+    ),
+    lg: (
+      font-size: rem(18),
+    ),
+  ),
+  new-tooltip: (
+    font-family: $fontstack-blender,
+    font-size: rem(12),
+    line-height: 1.2,
+    font-weight: bold,
+    text-transform: uppercase,
+    sm: (
+      font-size: rem(14),
+    ),
+    md: (
+      font-size: rem(16),
+    ),
+    lg: (
+      font-size: rem(18),
+    ),
+  ),
+  new-thintip: (
+    font-family: $fontstack-blender,
+    font-size: rem(16),
+    line-height: 1.2,
+    font-weight: 500,
+    letter-spacing: 1px,
+    text-transform: uppercase,
+    sm: (
+      font-size: rem(16),
+    ),
+    md: (
+      font-size: rem(16),
+    ),
+    lg: (
+      font-size: rem(18),
+    ),
+  ),
+  new-preheader: (
+    font-family: $fontstack-blender,
+    font-size: rem(14),
+    line-height: 1.2,
+    font-weight: 700,
+    sm: (
+      font-size: rem(18),
+    ),
+    md: (
+      font-size: rem(20),
+    ),
+    lg: (
+      font-size: rem(24),
+    ),
+  ),
+);
+
+/* =====  End of Typography  ====== */
+
+/* =============================================
+=            Layout            =
+============================================= */
+// Max-width
+$max-width: rem(1920);
+
+// Container max-width
+$container-max-width: rem(1560);
+
+// Base gutter for grid items
+$grid-gutter: rem(16);
+
+// Master map for grid settings at different sizes
+// Adjust settings here to update the grid globally
+$grid-settings: (
+  xs: (
+    breakpoint: 0,
+    padding: $grid-gutter,
+    gutter: $grid-gutter,
+    columns: 4,
+  ),
+  sm: (
+    breakpoint: 576px,
+    padding: $grid-gutter,
+    gutter: $grid-gutter,
+    columns: 8,
+  ),
+  md: (
+    breakpoint: 768px,
+    padding: $grid-gutter * 1.5,
+    gutter: $grid-gutter * 1.5,
+    columns: 12,
+  ),
+  lg: (
+    breakpoint: 1024px,
+    padding: rem(48),
+    gutter: $grid-gutter * 1.5,
+    columns: 12,
+  ),
+  xl: (
+    breakpoint: 1280px,
+    padding: rem(60),
+    gutter: $grid-gutter * 1.5,
+    columns: 12,
+  ),
+);
+
+// Layout spacing
+$spacer: 0.5rem;
+
+// prettier-ignore
+$spacers: (
+  0: 0,
+  1: $spacer, // 8px
+  2: $spacer * 2, // 16px
+  3: $spacer * 3, // 24px
+  4: $spacer * 4, // 32px
+  5: $spacer * 6, // 48px
+  6: $spacer * 7, // 56px
+  7: $spacer * 11, // 88px
+  8: $spacer * 12, // 96px
+  9: $spacer * 13, // 104px
+  10: $spacer * 16, // 128px
+  11: $spacer * 20, // 160px
+  12: $spacer * 25, // 200px
+);
+
+$z-index: (
+  hidden: -1,
+  base: 0,
+  media: 1,
+  header: 5,
+  subnav: 6,
+  modal: 10,
+  takeover: 20,
+  ccpa: 50,
+);
+
+/* =====  End of Layout  ====== */
+
+/* =============================================
+=            Forms            =
+============================================= */
+
+$form-input-height: 48px;
+
+/* =====  End of Forms  ====== */
+
+/* =============================================
+=            Borders            =
+============================================= */
+
+$border-radius: 3px;
+
+/* =====  End of Borders  ====== */
+
+$site-header-height: rem(68);
+$mobile-nav-height: calc(100vh - #{$site-header-height});
+$nav-transition: 300;
+$header-height-desktop: rem(115);
+$header-height-mobile: rem(60);

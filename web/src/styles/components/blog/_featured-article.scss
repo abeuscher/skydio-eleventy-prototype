@@ -1,0 +1,46 @@
+.featured-article {
+  @include media-up(md) {
+    background-image: linear-gradient(palette(grey-90) 50%, palette(white) 0%);
+    background-size: 100% 110%;
+    background-position: center;
+  }
+
+  &__image-container {
+    position: relative;
+  }
+
+  &__image {
+    display: block;
+    height: 100%;
+    max-height: 30rem;
+    overflow: hidden;
+
+    @include media-up(lg) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      min-height: 20rem;
+      max-height: 100%;
+    }
+
+    figure {
+      height: 100%;
+
+      .figure__caption {
+        display: none;
+      }
+    }
+  }
+
+  &__content {
+    .block-content {
+      @include type-style(body-4);
+    }
+  }
+
+  &__grid {
+    row-gap: 0;
+  }
+}

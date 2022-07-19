@@ -1,0 +1,25 @@
+@media print {
+  body {
+    color: #000 !important;
+    background-color: #fff;
+    .site-header,
+    .site-footer,
+    .youtube,
+    .article__share-links,
+    .drift-has-chat,
+    .article-pagination,
+    .gatsby-image-wrapper,
+    form,
+    img {
+      display: none;
+    }
+    .pull-quote {
+      border: none;
+      padding: 0;
+    }
+  }
+  .article__content,
+  .pull-quote__name {
+    color: black;
+  }
+}

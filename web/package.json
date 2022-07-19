@@ -15,21 +15,14 @@
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-fetch": "^3.0.0",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^2.0.3",
-    "@sanity/block-content-to-markdown": "0.0.5",
     "@sanity/client": "^3.3.2",
     "@sanity/image-url": "^1.0.1",
-    "dotenv": "^8.2.0",
-    "groq": "^0.142.0",
-    "luxon": "^1.19.3",
-    "markdown-it": "^10.0.0",
-    "markdown-it-anchor": "^5.2.5",
-    "netlify-plugin-cache": "^1.0.3",
+    "dart-sass": "^1.25.0",
+    "dotenv": "^16.0.1",
+    "groq": "^2.29.3",
+    "normalize.css": "^8.0.1",
+    "pug": "^3.0.2",
     "sass": "^1.53.0",
-    "pug": "^3.0.2"
-  },
-  "dependencies": {
-    "@sanity/image-url": "^1.0.1",
-    "eleventy-plugin-sass": "^1.2.0"
+    "swiper": "^8.0.7"
   }
 }

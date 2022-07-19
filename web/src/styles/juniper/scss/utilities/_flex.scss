@@ -1,0 +1,145 @@
+// Flex variation
+//
+// Custom styles for additional flex alignment options.
+
+// Flex direction and flex wrap
+$flex-direction-properties: row, row-reverse, column, column-reverse !default;
+$flex-wrap-properties: wrap, wrap-reverse, nowrap !default;
+
+@each $breakpoint in map-keys($grid-settings) {
+  @include media-up($breakpoint) {
+    $breakpoint-classname: get-bp-classname($breakpoint);
+
+    @each $value in $flex-direction-properties {
+      .flex#{$breakpoint-classname}-#{$value} {
+        flex-direction: $value;
+      }
+    }
+
+    @each $value in $flex-wrap-properties {
+      .flex#{$breakpoint-classname}-#{$value} {
+        flex-wrap: $value;
+      }
+    }
+
+    .flex#{$breakpoint-classname}-1 {
+      flex: 1 1 0%;
+    }
+
+    .flex#{$breakpoint-classname}-auto {
+      flex: 1 1 auto;
+    }
+
+    .flex#{$breakpoint-classname}-initial {
+      flex: 0 1 auto;
+    }
+
+    .flex#{$breakpoint-classname}-none {
+      flex: none;
+    }
+
+    .flex#{$breakpoint-classname}-grow-0 {
+      flex-grow: 0;
+    }
+
+    .flex#{$breakpoint-classname}-grow {
+      flex-grow: 1;
+    }
+
+    .flex#{$breakpoint-classname}-shrink-0 {
+      flex-shrink: 0;
+    }
+
+    .flex#{$breakpoint-classname}-shrink {
+      flex-shrink: 1;
+    }
+
+    .jc#{$breakpoint-classname}-start {
+      justify-content: flex-start;
+    }
+
+    .jc#{$breakpoint-classname}-end {
+      justify-content: flex-end;
+    }
+
+    .jc#{$breakpoint-classname}-center {
+      justify-content: center;
+    }
+
+    .jc#{$breakpoint-classname}-between {
+      justify-content: space-between;
+    }
+
+    .jc#{$breakpoint-classname}-around {
+      justify-content: space-around;
+    }
+
+    .ai#{$breakpoint-classname}-start {
+      align-items: flex-start;
+    }
+
+    .ai#{$breakpoint-classname}-end {
+      align-items: flex-end;
+    }
+
+    .ai#{$breakpoint-classname}-center {
+      align-items: center;
+    }
+
+    .ai#{$breakpoint-classname}-baseline {
+      align-items: baseline;
+    }
+
+    .ai#{$breakpoint-classname}-stretch {
+      align-items: stretch;
+    }
+
+    .ac#{$breakpoint-classname}-start {
+      align-content: flex-start;
+    }
+
+    .ac#{$breakpoint-classname}-end {
+      align-content: flex-end;
+    }
+
+    .ac#{$breakpoint-classname}-center {
+      align-content: center;
+    }
+
+    .ac#{$breakpoint-classname}-between {
+      align-content: space-between;
+    }
+
+    .ac#{$breakpoint-classname}-around {
+      align-content: space-around;
+    }
+
+    .ac#{$breakpoint-classname}-stretch {
+      align-content: stretch;
+    }
+
+    .as#{$breakpoint-classname}-auto {
+      align-self: auto;
+    }
+
+    .as#{$breakpoint-classname}-start {
+      align-self: flex-start;
+    }
+
+    .as#{$breakpoint-classname}-end {
+      align-self: flex-end;
+    }
+
+    .as#{$breakpoint-classname}-center {
+      align-self: center;
+    }
+
+    .as#{$breakpoint-classname}-baseline {
+      align-self: baseline;
+    }
+
+    .as#{$breakpoint-classname}-stretch {
+      align-self: stretch;
+    }
+  }
+}

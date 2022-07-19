@@ -1,0 +1,17 @@
+@mixin gradient-50-50($style) {
+  @if $style == "dark" {
+    background-image: linear-gradient(
+      to right,
+      palette(grey-70) 50%,
+      transparent 50%
+    );
+  }
+
+  @if $style == "light" {
+    background-image: linear-gradient(
+      to right,
+      palette(grey-15) 50%,
+      transparent 50%
+    );
+  }
+}

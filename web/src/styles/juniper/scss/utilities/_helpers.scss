@@ -1,0 +1,40 @@
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.visually-shown {
+  @include visually-shown;
+}
+
+.js-focus-hidden:focus {
+  outline: none;
+}
+
+.hidden {
+  display: none;
+}
+
+// Only show when JS is not supported
+.no-js:not(html) {
+  display: none;
+
+  .no-js & {
+    display: block;
+  }
+}
+
+// Only show when JS is supported
+.js {
+  .no-js & {
+    display: none;
+  }
+}
+
+// Resets
+.reset-button {
+  @include reset-button;
+}
+
+.reset-list {
+  @include reset-list;
+}
