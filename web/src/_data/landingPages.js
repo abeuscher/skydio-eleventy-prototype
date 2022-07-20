@@ -21,10 +21,14 @@ module.exports = async function () {
   const homepage = docs.filter((context) => context._id === config.frontpage._ref).pop();
 
   if (homepage) {
-    homepage.content.main.slug.current = "/";
+    homepage.content.main.slug.current = "";
   }
 
-  const contexts = docs.map((doc) => createPageContext(doc));
+  const contexts = docs.map((doc) => {
+    const context = createPageContext(doc);
+    context.permaLink = `${context.localePath}${context.data.content.main.slug.current}`;
+    return context;
+  });
 
   const assetCache = new AssetCache("landingPages", ".cache", {
     duration: "*",

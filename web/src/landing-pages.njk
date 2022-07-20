@@ -3,17 +3,19 @@ pagination:
   alias: context
   size: 1
   data: landingPages
-permalink: /{{ context.localePath }}{{ context.data.content.main.slug.current }}/index.html
+permalink: /{{ context.permaLink }}/index.html
 renderData:
   title: "{{context.data.content.main.title}}"
 ---
 {% extends "layouts/inc/base.njk" %}
-{% from "macros/meta-attributes.njk" import metaAttributes %}
+{% from "macros/index.njk" import meta %}
 {% set page = context.data %}
 
 {% block head %}
   {{ super() }}
-  {{ metaAttributes(page, context.global) }}
+  {{ meta(context, global, {
+    url: context.baseUrl + "/" + context.permaLink + "/"
+  }, true) }}
 {% endblock %}
 
 {% block content %}

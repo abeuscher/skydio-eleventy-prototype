@@ -1,17 +1,19 @@
-{%- macro metaName(name, content) -%}
-  {%- if content %}<meta name="{{ name }}" content="{{ content }}">{% endif -%}
-{%- endmacro -%}
+{% macro metaName(name, content) -%}
+  {%- if content and content != "" -%}
+    <meta name="{{ name }}" content="{{ content | string | trim }}">{% endif -%}
+{%- endmacro %}
 
 {% macro metaProperty(property, content) %}
-  {% if property %}<meta property="{{ property }}" content="{{ content }}">{% endif %}
+  {% if content and content != "" -%}
+    <meta property="{{ property }}" content="{{ content | string | trim }}">{% endif %}
 {% endmacro %}
 
-{% macro metaAttributes(page, global, overrides) -%}
-  {% set c = page.content %}
+{% macro meta(context, global, overrides, structuredData = false) -%}
+  {% set c = context.data.content %}
   {% set meta = c.meta %}
-  {% set description = overrides.description or c.main.description or meta.description or global.description %}
-  {% set keywords = overrides.keywords or meta.keywords or globalMeta.keywords %}
-  {% set title = overrides.title or meta.title or globalMeta.title or global.title %}
+  {% set description = overrides.description or c.main.description or meta.description or global.meta.description %}
+  {% set keywords = overrides.keywords or meta.keywords or global.meta.keywords %}
+  {% set title = overrides.title or meta.title or global.meta.title or global.site.meta.title %}
   {% set url = overrides.url or global.site.url %}
   {% set socialImageThumb = overrides.image.asset.url or meta.socialImage.asset.url or global.meta.socialImage.asset.url %}
 
@@ -26,4 +28,19 @@
   {{- metaName("twitter:creator", global.site.author) }}
   {{- metaName("twitter:title", meta.twitterTitle or title) }}
   {{- metaName("twitter:image", meta.twitterThumb.asset.url or socialImageThumb) }}
+  {% if context.isProduction %}
+    {{- metaName("robots", meta.robots) }}
+  {% else %}
+    {{- metaName("robots", "noindex, nofollow") }}
+  {% endif %}
+  {% if structuredData %}
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "WebSite",
+      "title": "{{ title }}",
+      "url": "{{ url }}"
+    }
+    </script>
+  {% endif %}
 {%- endmacro %}
