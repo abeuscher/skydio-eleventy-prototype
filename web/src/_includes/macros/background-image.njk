@@ -1,0 +1,5 @@
+{%- macro bg(imageData, className, inlineStyle) -%}
+    <div class="bg-image-macro {{className}}" style="background-image:url('{% imageUrlFor imageData.asset %}');{{inlineStyle}}">
+        {{caller()}}
+    </div>
+{%- endmacro -%}

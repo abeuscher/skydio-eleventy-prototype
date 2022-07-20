@@ -1,18 +1,20 @@
-<div className="simple-hero-module bgc-black color-white pb-3 pb-md-7" style="background-image:url('{% imageUrlFor currentModule.bgImage.asset %}');">
-    <div className="hero-text container--medium container">
-        <div className="col-xs-full image-content">
-            {% if currentModule.headerImage %}
-                <img src="{% imageUrlFor currentModule.headerImage.asset %}" class="bg-image"/>
-            {% endif %}
-            {% if currentModule.mobileHeaderImage %}
-                <div className="bg-image-mobile-wrapper">
-                    <img src="{% imageUrlFor currentModule.mobileHeaderImage.asset %}" class="bg-image"/>
-                </div>
-            {% endif %}
-        </div>
-        <div className="col-xs-full header-content">
-            <p className="type-new-h1 nl2br">{{currentModule.subheader}}</p>
-            <p></p>
-        </div>
+{%- from "macros/image.njk" import img -%}
+{%- from "macros/background-image.njk" import bg -%}
+{% call bg(currentModule.bgImage,"simple-hero-module bgc-black color-white pb-3 pb-md-7") %}
+<div className="hero-text container--medium container">
+    <div className="col-xs-full image-content">
+        {%- if currentModule.headerImage -%}
+            {{img(currentModule.headerImage,"bg-image")}}
+        {%- endif -%}
+        {%- if currentModule.mobileHeaderImage -%}
+            <div className="bg-image-mobile-wrapper">
+                {{img(currentModule.mobileHeaderImage,"bg-image")}}
+            </div>
+        {%- endif -%}
+    </div>
+    <div className="col-xs-full header-content">
+        <p className="type-new-h1 nl2br">{{currentModule.subheader}}</p>
+        <p></p>
     </div>
 </div>
+{% endcall %}

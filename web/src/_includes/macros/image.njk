@@ -1,0 +1,3 @@
+{%- macro img(imageData,className, inlineStyle, alt) -%}
+    <img src="{% imageUrlFor imageData.asset %}" class="{{className}}" style="{{inlineStyle}}" alt="{{alt}}"/>
+{%- endmacro -%}
