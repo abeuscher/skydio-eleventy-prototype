@@ -1,0 +1,11 @@
+---
+layout: layouts/flight-school/post.njk
+tags:
+  - myPosts
+pagination:
+  alias: post
+  data: flightschool
+  size: 1
+  addAllPagesToCollections: true
+permalink: /flight-school/{{ post.content.main.slug.current | slug }}/index.html
+---

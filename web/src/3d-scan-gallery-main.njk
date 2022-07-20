@@ -1,0 +1,9 @@
+---
+layout: layouts/3d-scan-gallery/index.njk
+title: 3D Scan Gallery
+permalink: /3d-scan-gallery/index.html
+---
+{% for post in threedscans %}
+    <p>{{post.content.main.title}}</p>
+{% endfor %}
+{{threedscans.length}}

@@ -1,0 +1,139 @@
+{% macro sectionHeader(data) %}
+    <header class="section-header">
+        <div class="container grid {{containerClasses(currentModule)}}">
+            {% if currentModule.displayImage %}
+                <div class="section-header__media section-header__media--x-{{currentModule.horizontalAlignment}} section-header__media--y-{{currentModule.verticalAlignment}}
+{{'section-header__media--inline mb-4' if inlineImage}}
+{{'col-xs-2-4 col-sm-3-7 col-md-4-10 col-lg-5-9' if horizontalAlignment === 'center'}}
+{{'col-xs-1-4 col-sm-1-8 col-md-1-7 col-lg-1-6 mb-md-0' if horizontalAlignment === 'left'}}
+{{'section-header__media--inline-right col-xs-2-end col-sm-2-end col-md-7-end col-lg-8-end mb-md-0' if horizontalAlignment === 'right'}}
+">
+                    {% if not mediaType or mediaType === 'image' and image %}{% endif %}
+            {(!mediaType || ) && image && (
+              <Image
+                image={image}
+                maxWidth={
+                  inlineImage ? IMAGE_SIZES.large : IMAGE_SIZES.fullscreen
+                }
+/>
+            )}
+            {mediaType === 'video' && video && <Video data={video}/>}
+          </div>
+            {% endif %}
+        {displayMedia && (
+          
+        )}
+        <div
+          className={cn(
+            'section-header__content col',
+            {
+              [`section-header__content--${horizontalAlignment}`]:
+                !!horizontalAlignment,
+              'ai-start jc-end': horizontalAlignment === 'left',
+              'ai-end jc-start': horizontalAlignment === 'right',
+              'ai-center jc-center': horizontalAlignment === 'center',
+              'col-lg-2-12':
+                (!inlineImage || !displayMedia) && containerSize === 'large',
+              'col-lg-6-end':
+                horizontalAlignment === 'left' && inlineImage && displayMedia,
+              'section-header__content--inline-right col-lg-1-8':
+                horizontalAlignment === 'right' && inlineImage && displayMedia,
+            },
+            {
+              'color-black': theme === 'light',
+            },
+            {
+              'color-black': theme === 'medium-light',
+            },
+            {
+              'color-white': theme === 'medium',
+            },
+            {
+              'color-white': theme === 'medium-dark',
+            },
+            {
+              'color-white': theme === 'dark',
+            },
+          )}
+        >
+          {label && (
+            <span
+              className={cn(
+                'd-block type-subtitle mb-4 mb-md-6',
+                {
+                  'color-grey-50': theme === 'light',
+                },
+                {
+                  'color-grey-50': theme === 'medium-light',
+                },
+                {
+                  'color-grey-30': theme === 'medium',
+                },
+                {
+                  'color-grey-40': theme === 'medium-dark',
+                },
+                {
+                  'color-grey-45': theme === 'dark',
+                },
+              )}
+            >
+              {label}
+            </span>
+          )}
+
+          {headingHOne ? (
+            <h1 className="type-h1 nl2br">{heading}</h1>
+          ) : (
+            <h2 className="type-h1 nl2br">{heading}</h2>
+          )}
+
+          {(subheading || body || displayButton || displayMedia) && (
+            <div
+              className={cn('section-header__copy mt-4', {
+                'section-header__copy--condensed': !inlineImage && displayMedia,
+                'section-header__copy--columns':
+                  !displayMedia && horizontalAlignment !== 'center',
+                'section-header__copy--has-cta': displayButton && !displayMedia,
+              })}
+            >
+                    <div className="section-header__subheading-wrap">
+                {subheading && (
+                  <BlockOrString
+                    value={subheading}
+                    el="h3"
+                    classObject="type-h2 nl2br"
+/>
+                )}
+
+                {displayButton && !displayMedia && (
+                  <CtaButtons
+                    ctaButtons={ctaButtons}
+                    className={cn({
+                      'mt-4': !!subheading,
+                    })}
+/>
+                )}
+              </div>
+
+              {body && (
+                <BlockOrString
+                  value={body}
+                  el="p"
+                  classObject={['type-body-1 nl2br', { 'mt-2': !!subheading }]}
+/>
+              )}
+
+              {displayButton && displayMedia && (
+                <CtaButtons
+                  ctaButtons={ctaButtons}
+                  className={cn({
+                    'mt-4': !!subheading || !!body,
+                  })}
+/>
+              )}
+            </div>
+          )}
+        </div>
+        </ContainerGrid>
+    </header>
+{% endmacro %}

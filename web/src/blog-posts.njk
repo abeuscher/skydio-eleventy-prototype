@@ -1,0 +1,11 @@
+---
+layout: layouts/blog/post.njk
+tags:
+  - myPosts
+pagination:
+  alias: post
+  data: blogposts
+  size: 1
+  addAllPagesToCollections: true
+permalink: /blog/{{ post.content.main.slug.current | slug }}/index.html
+---

@@ -1,5 +1,5 @@
 const groq = require("groq");
-const client = require("../utils/sanityClient");
+const client = require("../_utils/sanityClient");
 module.exports = async function () {
   const homeid = await client.fetch(groq`
     *[_type == "siteConfig"]{

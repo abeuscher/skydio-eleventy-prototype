@@ -1,0 +1,9 @@
+---
+layout: layouts/flight-school/index.njk
+title: Flight School
+permalink: /flight-school/index.html
+---
+{% for post in flightschool %}
+    <p>{{post.content.main.title}}</p>
+{% endfor %}
+{{flightschool.length}}

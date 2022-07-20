@@ -1,0 +1,9 @@
+---
+layout: layouts/blog/index.njk
+title: Blog
+permalink: /blog/index.html
+---
+{% for post in blogposts %}
+    <p>{{post.content.main.title}}</p>
+{% endfor %}
+{{blogposts.length}}
