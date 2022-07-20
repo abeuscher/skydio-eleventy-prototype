@@ -1,4 +1,4 @@
-const client = require("../utils/sanityClient");
+const client = require("../../_utils/data/sanityClient");
 
 const documentsByTypeWithDraftsQuery = `{
     'drafts': *[ _type == $type && _id in path("drafts.**") ]._id,

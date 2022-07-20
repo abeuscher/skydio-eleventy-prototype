@@ -1,5 +1,4 @@
 const imageUrl = require("@sanity/image-url");
-const sanityClient = require("../../utils/sanityClient");
 
 // // Learn more: https://www.sanity.io/docs/asset-pipeline/image-urls
 module.exports = function (eleventyConfig, options = {}) {

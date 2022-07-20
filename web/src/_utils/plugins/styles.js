@@ -5,6 +5,16 @@ const sass = require("sass");
 // TODO: Remove all keys from moduleStyles on rebuild
 const moduleStyles = {};
 
+const classNames = (classNames) => {
+  let classNamesString = "";
+  Object.keys(classNames).forEach((key) => {
+    if (classNames[key]) {
+      classNamesString += ` ${key}`;
+    }
+  });
+  return classNamesString.trim();
+}
+
 const buildStyles = (context) => {
   const modules = context?.data?.content?.main?.modules || [];
   const styles = modules.map((module) => {
@@ -37,6 +47,7 @@ const buildStyles = (context) => {
 
 module.exports = (eleventyConfig) => {
   eleventyConfig.addTemplateFormats("scss");
+  eleventyConfig.addFilter("classnames", classNames);
 
   // Creates the extension for use
   eleventyConfig.addExtension("scss", {

@@ -15,11 +15,12 @@
   "dependencies": {
     "@11ty/eleventy": "^1.0.1",
     "@11ty/eleventy-fetch": "^3.0.0",
+    "@sanity/block-content-to-markdown": "^0.0.5",
     "@sanity/client": "^3.3.2",
     "@sanity/image-url": "^1.0.1",
-    "html-minifier": "^4.0.0",
     "dotenv": "^16.0.1",
     "groq": "^2.29.3",
+    "html-minifier": "^4.0.0",
     "normalize.css": "^8.0.1",
     "pug": "^3.0.2",
     "sass": "^1.53.0",

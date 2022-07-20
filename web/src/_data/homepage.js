@@ -1,8 +1,6 @@
-const groq = require("groq");
-const client = require("../_utils/sanityClient");
-const query = require("../utils/query");
-const createPageContext = require("../utils/createPageContext");
-const client = require("../utils/sanityClient");
+const query = require("../_utils/data/query");
+const createPageContext = require("../_utils/data/createPageContext");
+const client = require("../_utils/data/sanityClient");
 
 const homepageQuery = `*[_type == "landingPage" && _id==$homeid] {
       ...,

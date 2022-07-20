@@ -1,5 +1,5 @@
-const query = require("../utils/query");
-const createPageContext = require("../utils/createPageContext");
+const query = require("../_utils/data/query");
+const createPageContext = require("../_utils/data/createPageContext");
 const { AssetCache } = require("@11ty/eleventy-fetch");
 
 module.exports = async function () {

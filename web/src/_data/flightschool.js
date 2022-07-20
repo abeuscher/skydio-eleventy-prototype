@@ -1,7 +1,7 @@
 const BlocksToMarkdown = require("@sanity/block-content-to-markdown");
 const groq = require("groq");
-const client = require("../_utils/sanityClient.js");
-const overlayDrafts = require("../_utils/overlayDrafts");
+const client = require("../_utils/data/sanityClient.js");
+const overlayDrafts = require("../_utils/data/overlayDrafts");
 const hasToken = !!client.config().token;
 
 function generatePost(post) {

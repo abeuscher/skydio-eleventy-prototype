@@ -1,0 +1,21 @@
+---
+pagination:
+  alias: context
+  size: 1
+  data: landingPages
+permalink: /{{ context.localePath }}/index.html
+renderData:
+  title: "{{context.page.content.main.title}}"
+---
+{% extends "layouts/inc/base.njk" %}
+{% from "macros/meta-attributes.njk" import metaAttributes %}
+{% set page = context.data %}
+
+{% block head %}
+  {{ super() }}
+  {{ metaAttributes(page, context.global) }}
+{% endblock %}
+
+{% block content %}
+  {% include "modules/landingPageContent/index.njk" %}
+{% endblock %}

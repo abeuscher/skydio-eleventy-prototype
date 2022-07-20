@@ -1,4 +1,4 @@
-const imageUrl = require('web/src/utils/plugins/imageUrl')
+const imageUrl = require('./plugins/imageUrl')
 
 // Learn more on https://www.sanity.io/guides/introduction-to-portable-text
 module.exports = {
