@@ -1,0 +1,7 @@
+@function palette($color) {
+  @return map-get($palette, $color);
+}
+
+@function theme-color($color) {
+  @return map-get($theme-colors, $color);
+}

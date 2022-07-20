@@ -1,0 +1,4 @@
+  {% set c = context.data.content %}
+{% set metaDescription = c.main.description or meta.description or globalMeta.description %}
+  <meta name="description" content="{{ meta.ogDescription or description }}">
+  <meta name="keywords" content="{{ meta.keywords or globalMeta.keywords }}">

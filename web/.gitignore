@@ -5,6 +5,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Netlify functions auto generated
+netlify/functions/ssr/**
+!netlify/functions/ssr/index.js
+
 # Runtime data
 pids
 *.pid

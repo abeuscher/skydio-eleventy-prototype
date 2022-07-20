@@ -1,0 +1,11 @@
+@import "../juniper/scss/functions/units";
+@import "variables";
+
+:export {
+  @each $breakpoint in map-keys($grid-settings) {
+    breakpoint-#{$breakpoint}: map-get(
+      map-get($grid-settings, $breakpoint),
+      breakpoint
+    );
+  }
+}

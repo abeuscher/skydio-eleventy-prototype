@@ -1,0 +1,15 @@
+// Utility classes to set certain display properties at each breakpoint
+
+$displays: none, inline, inline-block, block, flex, inline-flex !default;
+
+@each $breakpoint in map-keys($grid-settings) {
+  @include media-up($breakpoint) {
+    $breakpoint-classname: get-bp-classname($breakpoint);
+
+    @each $value in $displays {
+      .d#{$breakpoint-classname}-#{$value} {
+        display: $value;
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+[[redirects]]
+from = "/preview/:id"
+to = "/.netlify/functions/ssr"
+status = 200
+force = true
+_generated_by_eleventy_serverless = "ssr"
+
+[[plugins]]
+package = "netlify-plugin-cache"
+
+  [plugins.inputs]
+  paths = [ ".cache" ]

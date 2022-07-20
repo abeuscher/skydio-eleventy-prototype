@@ -1,7 +1,12 @@
+const { EleventyServerlessBundlerPlugin } = require("@11ty/eleventy");
 const util = require("util");
-const pluginSass = require("eleventy-plugin-sass");
 const urlFor = require("./src/_utils/imageUrl");
 const htmlmin = require("html-minifier");
+const buildStyles = require("./src/utils/plugins/buildStyles");
+const renderPugPlugin = require("./src/utils/plugins/renderPug");
+const classNames = require("./src/utils/classNames");
+const imagePlugin = require("./src/utils/plugins/imageUrl")
+const sanityClient = require("./src/utils/sanityClient");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("debug", function (value) {
@@ -11,16 +16,6 @@ module.exports = function (eleventyConfig) {
     return console.log(value);
   });
 
-  eleventyConfig.addPlugin(pluginSass);
-  eleventyConfig.addShortcode("imageUrlFor", (image, width = "400") => {
-    return urlFor(image).width(width).auto("format");
-  });
-  eleventyConfig.addShortcode("croppedUrlFor", (image, width, height) => {
-    return urlFor(image).width(width).height(height).auto("format");
-  });
-  eleventyConfig.addPassthroughCopy({
-    "node_modules/normalize.css/normalize.css": "css/normalize.css",
-  });
   eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
     if (outputPath.endsWith(".html")) {
       return htmlmin.minify(content, {
@@ -33,6 +28,15 @@ module.exports = function (eleventyConfig) {
 
     return content;
   });
+  eleventyConfig.addPlugin(buildStyles);
+  eleventyConfig.addPlugin(EleventyServerlessBundlerPlugin, {
+    name: "ssr",
+    functionsDir: "./netlify/functions/",
+    copy: ["src/utils/", "src/styles/", "src/client-config.js", { from: ".cache", to: "cache" }],
+  });
+  eleventyConfig.addPlugin(renderPugPlugin);
+  eleventyConfig.addFilter("classnames", classNames);
+  eleventyConfig.addPlugin(imagePlugin, { client: sanityClient });
   return {
     dir: {
       input: "src",

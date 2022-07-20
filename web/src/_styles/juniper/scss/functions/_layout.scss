@@ -1,0 +1,69 @@
+// Get z-index
+@function z($component) {
+  @return map-get($z-index, $component);
+}
+
+/* =============================================
+=               Grid Settings                 =
+============================================= */
+
+// Get a specific grid setting value from the nested $grid-settings list
+@function get-grid-setting($size, $setting) {
+  // If $size is a number, fetch the setting by index
+  // Useful for getting the first setting without knowing the key
+  @if type-of($size) == number {
+    @return get-grid-setting(nth(nth($grid-settings, $size), 1), $setting);
+  }
+
+  // In this case a grid size string was passed, so return the setting for that size
+  @return map-get(map-get($grid-settings, $size), $setting);
+}
+
+/* =============================================
+=                Breakpoints                  =
+============================================= */
+
+// Gets a specific breakpoint value from the grid settings map
+@function bp($breakpoint) {
+  @return map-get(map-get($grid-settings, $breakpoint), breakpoint);
+}
+
+// Get the minimum width for a specific breakpoint
+// Returns null if breakpoint min is 0 (ie. xs)
+//
+// Usage: bp-min(sm)
+// => 576px
+@function bp-min($breakpoint) {
+  $min: bp($breakpoint);
+
+  @return if($min != 0, $min, null);
+}
+
+// Returns a blank string if smallest breakpoint, otherwise returns the name with a dash in front.
+// Useful for making responsive utility classes.
+//
+// Usage: get-bp-classname(xs)
+// => ""  (Returns a blank string)
+// get-bp-classname(sm)
+// => "-sm"
+@function get-bp-classname($name) {
+  @return if(bp-min($name) == null, "", "-#{$name}");
+}
+
+/* =============================================
+=                   Spacing                   =
+============================================= */
+
+// Get a specific space value
+//
+// Usage: padding-top: space(1);
+@function space($sizes) {
+  $max: length($sizes);
+  $values: ();
+
+  @for $i from 1 through $max {
+    $values: append($values, map-get($spacers, nth($sizes, $i)));
+  }
+
+  @return $values;
+}

@@ -1,0 +1,15 @@
+/* TODO: Remove, can't find this anywhere else */
+.product-page {
+  .product-page__image-details-wrapper {
+    gap: space(7);
+  }
+
+  .product-details {
+    position: sticky;
+    top: space(5);
+  }
+
+  .product-form__price {
+    color: palette(grey-40);
+  }
+}

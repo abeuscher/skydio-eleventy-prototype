@@ -1,0 +1,15 @@
+// Utility classes to set position at each breakpoint
+
+$positions: static, relative, absolute, fixed, sticky, inherit !default;
+
+@each $breakpoint in map-keys($grid-settings) {
+  @include media-up($breakpoint) {
+    $breakpoint-classname: get-bp-classname($breakpoint);
+
+    @each $value in $positions {
+      .position#{$breakpoint-classname}-#{$value} {
+        position: $value;
+      }
+    }
+  }
+}

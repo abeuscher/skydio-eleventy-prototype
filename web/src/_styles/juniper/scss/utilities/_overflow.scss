@@ -1,0 +1,23 @@
+// Utility classes to set position at each breakpoint
+
+$overflow-properties: visible, hidden, scroll, auto !default;
+
+@each $breakpoint in map-keys($grid-settings) {
+  @include media-up($breakpoint) {
+    $breakpoint-classname: get-bp-classname($breakpoint);
+
+    @each $value in $overflow-properties {
+      .overflow#{$breakpoint-classname}-#{$value} {
+        overflow: $value;
+      }
+
+      .overflow-x#{$breakpoint-classname}-#{$value} {
+        overflow: $value;
+      }
+
+      .overflow-y#{$breakpoint-classname}-#{$value} {
+        overflow: $value;
+      }
+    }
+  }
+}
