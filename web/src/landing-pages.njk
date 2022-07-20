@@ -3,9 +3,9 @@ pagination:
   alias: context
   size: 1
   data: landingPages
-permalink: /{{ context.localePath }}/index.html
+permalink: /{{ context.localePath }}{{ context.data.content.main.slug.current }}/index.html
 renderData:
-  title: "{{context.page.content.main.title}}"
+  title: "{{context.data.content.main.title}}"
 ---
 {% extends "layouts/inc/base.njk" %}
 {% from "macros/meta-attributes.njk" import metaAttributes %}

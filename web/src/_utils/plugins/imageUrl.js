@@ -5,9 +5,11 @@ module.exports = function (eleventyConfig, options = {}) {
   function urlFor(source) {
     return imageUrl(options.client).image(source);
   }
+
   eleventyConfig.addShortcode("imageUrlFor", (image, width = "400") => {
     return urlFor(image).width(width).auto("format");
   });
+
   eleventyConfig.addShortcode("croppedUrlFor", (image, width, height) => {
     return urlFor(image).width(width).height(height).auto("format");
   });
