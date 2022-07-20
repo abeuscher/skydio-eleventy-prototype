@@ -24,11 +24,13 @@ module.exports = async function () {
     homepage.content.main.slug.current = "";
   }
 
-  const contexts = docs.map((doc) => {
-    const context = createPageContext(doc);
-    context.permaLink = `${context.localePath}${context.data.content.main.slug.current}`;
-    return context;
-  });
+  const contexts = await Promise.all(
+    docs.map(async (doc) => {
+      const context = await createPageContext(doc);
+      context.permaLink = `${context.localePath}${context.data.content.main.slug.current}`;
+      return context;
+    })
+  );
 
   const assetCache = new AssetCache("landingPages", ".cache", {
     duration: "*",

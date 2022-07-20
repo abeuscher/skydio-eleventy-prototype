@@ -18,11 +18,11 @@
   'site-wrapper--has-hero': hasHero
 } | classnames }}">
   {% block header %}
-    {% pug "layouts/inc/header.pug", header %}
+    {% pug "layouts/inc/header.pug", context %}
   {% endblock %}
   {% block content %}{% endblock %}
   {% block footer %}
-    {% pug "layouts/inc/footer.pug", footer %}
+    {% pug "layouts/inc/footer.pug", context %}
   {% endblock %}
 </div>
 </body>
