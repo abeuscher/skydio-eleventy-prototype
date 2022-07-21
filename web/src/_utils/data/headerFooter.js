@@ -12,6 +12,7 @@ const navQuery = `{
       link {
       ...,
         internalLink {
+          ...,
           link->
         }
       }
@@ -19,11 +20,13 @@ const navQuery = `{
     link {
     ...,
       internalLink {
+        ...,
         link->
       }
     }
   }
 }`;
+
 
 const getHeaderFooter = async (locale) => {
   locale = locale || "en-us";

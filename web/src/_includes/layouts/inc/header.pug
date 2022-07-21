@@ -9,10 +9,12 @@ header
             ul
               each subItem in item.items
                 li
-                  if subItem && subItem.link && subItem.link.internalLink
+                  if subItem && subItem.link && subItem.link.internalLink && subItem.link.internalLink.link
+                    a(href="/" + subItem.link.internalLink.link.content.main.slug.current) #{subItem.label}
+                  else if subItem && subItem.link && subItem.link.internalLink
                     a(href=subItem.link.internalLink.path) #{subItem.label}
                   else if subItem && subItem.link && subItem.link.externalLink
-                    a(href=subItem.link.externalLink.url, target="_blank") #{subItem.label}
+                    a(href=subItem.link.externalLink.link, target="_blank") #{subItem.label}
                   else
                     #{subItem.label}
         else
