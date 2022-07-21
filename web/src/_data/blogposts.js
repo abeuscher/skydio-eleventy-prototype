@@ -2,6 +2,7 @@ const BlocksToMarkdown = require("@sanity/block-content-to-markdown");
 const groq = require("groq");
 const client = require("../_utils/data/sanityClient.js");
 const overlayDrafts = require("../_utils/data/overlayDrafts");
+const {createContextForPages} = require("../_utils/data/createPageContext");
 const hasToken = !!client.config().token;
 
 function generatePost(post) {
@@ -25,10 +26,15 @@ async function getPosts() {
       }
     },
   }`;
+  const generatePath = (doc) => {
+    return `/${[doc.i18n_lang, "blog", doc.content.main.slug.current]
+      .filter((part) => part)
+      .join("/")}`;
+  };
   const order = `| order(content.main.publishedAt asc)`;
   const query = [filter, projection, order].join(" ");
   const docs = await client.fetch(query).catch((err) => console.error(err));
-  const preparePosts = docs.map(generatePost);
+  const preparePosts = await createContextForPages(docs, generatePath);
   return preparePosts;
 }
 
