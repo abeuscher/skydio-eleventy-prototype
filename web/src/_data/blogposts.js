@@ -4,6 +4,7 @@ const client = require("../_utils/data/sanityClient.js");
 const overlayDrafts = require("../_utils/data/overlayDrafts");
 const {createContextForPages} = require("../_utils/data/createPageContext");
 const hasToken = !!client.config().token;
+const contextCache = require("../_utils/data/contextCache");
 
 function generatePost(post) {
   return {
@@ -14,6 +15,7 @@ function generatePost(post) {
 async function getPosts() {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
   const filter = groq`*[_type == "post" && defined(content.main.slug) && content.main.publishedAt < now()]`;
+
   const projection = groq`{
     _id,
     publishedAt,
@@ -38,4 +40,4 @@ async function getPosts() {
   return preparePosts;
 }
 
-module.exports = getPosts;
+module.exports = contextCache("posts", getPosts);

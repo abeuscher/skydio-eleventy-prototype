@@ -1,21 +1,8 @@
 const query = require("../_utils/data/query");
-const { AssetCache } = require("@11ty/eleventy-fetch");
-const {createContextForPages} = require("../_utils/data/createPageContext");
+const { createContextForPages } = require("../_utils/data/createPageContext");
+const contextCache = require("../_utils/data/contextCache");
 
-module.exports = async function () {
-  // TODO: Create a method to wrap this functionality to use on all data not required
-  //       for the preview.
-  if (process.env.ELEVENTY_SERVERLESS) {
-    const cacheDir = process.env.NODE_ENV !== "development" ? "cache" : ".cache";
-    const assetCache = new AssetCache("landingPages", cacheDir, {
-      duration: "*",
-    });
-    const cachedValue = await assetCache.getCachedContents("json");
-    if (cachedValue) {
-      return cachedValue;
-    }
-  }
-
+module.exports = contextCache("landingPages", async function () {
   const config = await query.getSiteConfig();
   const docs = await query.getDocuments("landingPage", true);
   const homepage = docs.filter((context) => context._id === config.frontpage._ref).pop();
@@ -34,13 +21,5 @@ module.exports = async function () {
       .join("/")}`;
   };
 
-  const contexts = await createContextForPages(docs, generatePath);
-
-  const assetCache = new AssetCache("landingPages", ".cache", {
-    duration: "*",
-  });
-
-  await assetCache.save(docs, "json");
-
-  return contexts;
-};
+  return await createContextForPages(docs, generatePath);
+});

@@ -10,7 +10,7 @@ let developmentMode = false;
 const buildPug = function (pugFile, data) {
   const key = crypto.createHash("md5").update(`${pugFile}${data}`).digest("hex");
 
-  if (!developmentMode && rendered[key]) {
+  if (rendered[key]) {
     return rendered[key];
   }
 

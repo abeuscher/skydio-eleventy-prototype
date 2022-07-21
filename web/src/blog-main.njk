@@ -10,6 +10,6 @@ permalink: /{{ index.path }}/index.html
 
 {% block content %}
   {% for post in index.context.posts %}
-    <p>{{ post.content.main.title }}</p>
+    <h1>{{ post.content.main.title }}</h1>
   {% endfor %}
 {% endblock %}

@@ -1,3 +1,4 @@
+const contextCache = require("../_utils/data/contextCache");
 const getPosts = require("./blogposts");
 const PAGE_SIZE = 10;
 
@@ -23,7 +24,7 @@ const generatePostIndexes = async function (posts, locale) {
   return postIndexes;
 };
 
-module.exports = async function () {
+module.exports = contextCache("blog-indexes", async function () {
   const posts = await getPosts();
   const postsByLocale = {};
 
@@ -35,9 +36,11 @@ module.exports = async function () {
     postsByLocale[locale].push(post);
   });
 
-  const results = await Promise.all(Object.keys(postsByLocale).map(async (locale) =>
-    await generatePostIndexes(postsByLocale[locale], locale)
-  ));
+  const results = await Promise.all(
+    Object.keys(postsByLocale).map(
+      async (locale) => await generatePostIndexes(postsByLocale[locale], locale)
+    )
+  );
 
   return results.flat();
-};
+});
