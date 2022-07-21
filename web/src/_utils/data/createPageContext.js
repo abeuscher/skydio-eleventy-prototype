@@ -29,7 +29,7 @@ const createContextForPages = async function (pages, generatePath) {
       return {
         ...context,
         alternateLocalePaths,
-        permaLink:
+        permalink:
           languagePaths[page.content.main.slug.current][page.i18n_lang || "en-us"].path.substring(1),
       };
     })

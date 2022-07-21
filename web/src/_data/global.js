@@ -1,6 +1,7 @@
 const client = require("../_utils/data/sanityClient");
+const contextCache = require("../_utils/data/contextCache");
 
-module.exports = async () => {
+module.exports = contextCache("global", async () => {
   const data = await client.fetch(`
   {
     'global': *[_type == 'siteGlobal'][0],
@@ -25,4 +26,4 @@ module.exports = async () => {
       },
     },
   };
-};
+});

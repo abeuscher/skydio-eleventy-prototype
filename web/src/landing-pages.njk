@@ -3,7 +3,7 @@ pagination:
   alias: context
   size: 1
   data: landingPages
-permalink: /{{ context.permaLink }}/index.html
+permalink: /{{ context.permalink }}/index.html
 renderData:
   title: "{{context.data.content.main.title}}"
 ---
@@ -14,7 +14,7 @@ renderData:
 {% block head %}
   {{ super() }}
   {{ meta(context, global, {
-    url: context.baseUrl + "/" + context.permaLink + "/"
+    url: context.baseUrl + "/" + context.permalink + "/"
   }, true) }}
 {% endblock %}
 

@@ -1,9 +1,11 @@
 ---
-layout: layouts/flight-school/index.njk
 title: Flight School
 permalink: /flight-school/index.html
 ---
-{% for post in flightschool %}
-    <p>{{post.content.main.title}}</p>
-{% endfor %}
-{{flightschool.length}}
+{% extends "layouts/flight-school/index.njk" %}
+
+{% block content %}
+  {% for post in index.context.posts %}
+    <h2>{{ post.content.main.title }}</h2>
+  {% endfor %}
+{% endblock %}

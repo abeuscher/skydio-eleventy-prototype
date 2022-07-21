@@ -2,7 +2,7 @@ const { AssetCache } = require("@11ty/eleventy-fetch");
 const fs = require("fs");
 
 module.exports = async (key, dataFunction) => {
-  if (!process.env.ELEVENTY_SERVERLESS || process.env.CACHE_ENABLED === "true") {
+  if ((!process.env.ELEVENTY_SERVERLESS && process.env.NODE_ENV !== "development") || process.env.CACHE_ENABLED === "true") {
     const cacheDir = process.env.NODE_ENV !== "development" ? "cache" : ".cache";
     const assetCache = new AssetCache(key, cacheDir, {
       duration: "*",
