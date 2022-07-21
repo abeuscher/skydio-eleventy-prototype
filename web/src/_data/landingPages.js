@@ -34,19 +34,12 @@ module.exports = async function () {
       .join("/")}`;
   };
 
-  // const contexts = await Promise.all(
-  //   docs.map(async (doc) => {
-  //     const context = await createPageContext(doc);
-  //     context.permaLink = `${context.localePath}${context.data.content.main.slug.current}`;
-  //     return context;
-  //   })
-  // );
-
   const contexts = await createContextForPages(docs, generatePath);
 
   const assetCache = new AssetCache("landingPages", ".cache", {
     duration: "*",
   });
+
   await assetCache.save(docs, "json");
 
   return contexts;

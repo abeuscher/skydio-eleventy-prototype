@@ -1,9 +1,15 @@
 ---
-layout: layouts/blog/index.njk
 title: Blog
-permalink: /blog/index.html
+pagination:
+  alias: index
+  data: blogPostIndexes
+  size: 1
+permalink: /{{ index.path }}/index.html
 ---
-{% for post in blogposts %}
-    <p>{{post.content.main.title}}</p>
-{% endfor %}
-{{blogposts.length}}
+{% extends "layouts/blog/index.njk" %}
+
+{% block content %}
+  {% for post in index.context.posts %}
+    <p>{{ post.content.main.title }}</p>
+  {% endfor %}
+{% endblock %}
