@@ -41,6 +41,12 @@
       "title": "{{ title }}",
       "url": "{{ url }}"
     }
+
     </script>
+    {% if context.alternateLocalePaths %}
+      {% for locale, path in context.alternateLocalePaths %}
+        <link rel="alternate" href="{{ path }}" hreflang="{{ locale }}">
+      {% endfor %}
+    {% endif %}
   {% endif %}
 {%- endmacro %}
