@@ -1,0 +1,130 @@
+.locale-switcher {
+  position: relative;
+  margin-right: space(2);
+  padding: space(1) 0;
+  display: none;
+
+  @include media($min: bp(md)) {
+    display: inline-block;
+    &:hover {
+      opacity: 1;
+      &::after {
+        opacity: 1;
+        transform: translateY(2px);
+      }
+
+      & .locale-switcher__languages {
+        opacity: 1;
+        transform: none;
+        pointer-events: initial;
+      }
+
+      & .icon-chevronDown {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    margin: 0;
+    background-color: palette(white);
+    opacity: 0;
+    transform: translateY(-3px);
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: z(subnav);
+
+    .is-scrolled & {
+      background-color: palette(grey-70);
+    }
+  }
+
+  &__selector {
+    display: flex;
+    appearance: none;
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    align-items: center;
+    @include type-style(menu);
+
+    .icon-chevronDown {
+      margin-left: $spacer;
+      transition: transform 0.3s;
+    }
+
+    .icon-i18nGlobe {
+      margin-right: calc($spacer/2);
+    }
+  }
+
+  &__languages {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: z(subnav);
+    list-style: none;
+    display: none;
+
+    @include media($min: bp(md)) {
+      display: block;
+      top: 100%;
+      width: max-content;
+      left: -#{space(1)};
+      height: auto;
+      padding: space(2 3);
+      background-color: palette(grey-80);
+      min-width: rem(150);
+      box-shadow: 0 16px 16px rgba(0, 0, 0, 0.25);
+      transform: translateY(-5px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+
+      .is-scrolled & {
+        background: palette(grey-10);
+      }
+
+      > * {
+        transition: opacity 0.2s;
+      }
+
+      &:hover {
+        > * {
+          opacity: 0.4;
+
+          &:hover {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &__language-item {
+    @include type-style(menu);
+
+    @include media($min: bp(md)) {
+      color: palette(white);
+      padding: 0;
+      border: none;
+
+      .is-scrolled & {
+        color: palette(black);
+      }
+
+      &:not(:last-child) {
+        margin: 0;
+      }
+    }
+  }
+}

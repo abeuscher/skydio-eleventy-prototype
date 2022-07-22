@@ -1,0 +1,46 @@
+.responsive-slider {
+  @include media($max: bp(md)) {
+    @include negate-container;
+  }
+
+  .swiper {
+    padding-bottom: rem(60);
+  }
+
+  .swiper-slide {
+    width: 70%;
+  }
+}
+
+.responsive-slider--md-grid {
+  @include media($min: bp(md)) {
+    @include grid;
+  }
+}
+
+.swiper-pagination-bullet {
+  width: rem(18);
+  height: rem(18);
+  background-color: palette(grey-30);
+  opacity: 0.25;
+  transition: opacity 200ms;
+
+  &-active {
+    background-color: palette(pink);
+    opacity: 1;
+  }
+
+  .module-style--light & {
+    background-color: palette(grey-50);
+  }
+}
+
+.swiper-horizontal {
+  > .swiper-pagination-bullets {
+    bottom: 0;
+
+    .swiper-pagination-bullet {
+      margin: 0 space(2);
+    }
+  }
+}

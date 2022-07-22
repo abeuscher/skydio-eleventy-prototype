@@ -1,20 +1,27 @@
+{%- from "macros/button/index.njk" import btn -%}
 {%- from "macros/image.njk" import img -%}
 {%- from "macros/background-image.njk" import bg -%}
-{% call bg(currentModule.bgImage,"simple-hero-module bgc-black color-white pb-3 pb-md-7") %}
-<div className="hero-text container--medium container">
-    <div className="col-xs-full image-content">
+{%- call bg(currentModule.bgImage,"simple-hero-module bgc-black color-white pb-3 pb-md-7") -%}
+<div class="hero-text container--medium container">
+    <div class="col-xs-full image-content">
         {%- if currentModule.headerImage -%}
             {{img(currentModule.headerImage,"bg-image")}}
         {%- endif -%}
         {%- if currentModule.mobileHeaderImage -%}
-            <div className="bg-image-mobile-wrapper">
+            <div class="bg-image-mobile-wrapper">
                 {{img(currentModule.mobileHeaderImage,"bg-image")}}
             </div>
         {%- endif -%}
     </div>
-    <div className="col-xs-full header-content">
-        <p className="type-new-h1 nl2br">{{currentModule.subheader}}</p>
-        <p></p>
+    <div class="col-xs-full header-content">
+        {{img(currentModule.logo)}}
+        <p>{{header | dump }}</p>
+        <p class="type-new-h1 nl2br">{{currentModule.subheader | escape | nl2br | trim }}</p>
+        <div className="button-group mt-3">
+            {% for button in currentModule.buttons %}
+                {{btn(button)}}
+            {% endfor %}
+        </div>
     </div>
 </div>
-{% endcall %}
+{%- endcall -%}

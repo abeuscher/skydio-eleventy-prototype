@@ -1,0 +1,10 @@
+{%- macro link({children,to,activeClassName,partiallyActive,blank,sanityLink,...other}) -%}
+    {% set thisLink = to
+        ? to
+        : sanityLink.condition === "internalLink"
+            ? sanityLink.internalLink.path
+                ? sanityLink.internalLink.path
+                : sanityLink.internalLink._ref
+            : sanityLink.externalLink.path %}
+    <a href="{{thisLink}}" {{..other}}>{{children}}</a>
+{%- endmacro -%}

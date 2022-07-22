@@ -1,0 +1,28 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  @include type-style(slider);
+
+  a {
+    display: inline-block;
+    padding: space(1) space(2);
+    margin-left: calc($spacer/2);
+    margin-right: calc($spacer/2);
+    color: palette(black);
+    background-color: palette(grey-10);
+    border-radius: $border-radius;
+
+    &.active {
+      background-color: palette(grey-20);
+    }
+
+    &[rel="prev"] {
+      transform: rotateZ(180deg);
+    }
+
+    svg {
+      vertical-align: middle;
+    }
+  }
+}

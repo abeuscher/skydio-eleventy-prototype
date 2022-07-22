@@ -7,21 +7,6 @@ const navQuery = `{
   ...,
   items[] {
   ...,
-    items[] {
-    ...,
-      link {
-      ...,
-        internalLink {
-          link->
-        }
-      }
-    },
-    link {
-    ...,
-      internalLink {
-        link->
-      }
-    }
   }
 }`;
 

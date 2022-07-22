@@ -1,3 +1,3 @@
-{% macro button(params) %}
-    <a class={{params.className}}>{{params.label}}</a>
+{% macro btn(params) %}
+    <a href="{{params.link | sanitySlug}}" class="button button--{{params.style}} {% if params.size!=='default' %}button--{{params.size}}{% endif %}">{{params.text}}</a>
 {% endmacro %}

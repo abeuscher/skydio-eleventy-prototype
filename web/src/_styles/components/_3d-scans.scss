@@ -1,0 +1,27 @@
+.index-page-hero__background-model {
+  height: 100%;
+}
+
+.model {
+  // 28.125% is half 56.25%, which is 16:9 ratio of model
+  .sketchfab-embed {
+    margin-top: calc(-28.125% - 3.5rem);
+  }
+}
+
+.model__header-container {
+  padding-bottom: calc(28.125% + 3.5rem);
+}
+
+.model-details {
+  @include media($max: bp(md)) {
+    @include grid();
+
+    .model-details__single {
+      grid-column: span 2;
+    }
+  }
+
+  display: flex;
+  justify-content: space-between;
+}

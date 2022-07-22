@@ -1,0 +1,26 @@
+// Example styles for mini cart. Remove / change as needed.
+.mini-cart {
+  position: absolute;
+  z-index: z(modal);
+  overflow: auto;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  max-width: 400px;
+  max-height: 500px;
+  padding: space(4);
+  background-color: palette(white);
+  box-shadow: 2px 2px 4px palette(grey-30);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: visibility 200ms, opacity 200ms, transform 200ms;
+
+  &--visible {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @include small-cart-item;
+}

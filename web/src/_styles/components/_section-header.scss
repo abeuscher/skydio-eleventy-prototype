@@ -1,0 +1,120 @@
+.section-header {
+  position: relative;
+}
+
+.section-header__cta {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -#{space(1)};
+  margin-left: -#{space(1)};
+
+  .button {
+    margin-bottom: space(1);
+
+    @include media($max: bp(md)) {
+      min-width: 100%;
+    }
+
+    @include media-up(md) {
+      margin-right: space(1);
+      margin-left: space(1);
+    }
+  }
+}
+
+.section-header__media:not(.section-header__media--inline) {
+  position: absolute;
+  width: 110%;
+
+  @include media($min: bp(md)) {
+    width: 75%;
+  }
+
+  &.section-header__media--x-left {
+    right: 0;
+  }
+
+  &.section-header__media--x-right {
+    left: 0;
+  }
+
+  &.section-header__media--x-center {
+    left: 0;
+    width: 100%;
+  }
+
+  &.section-header__media--y-bottom {
+    bottom: 0;
+  }
+
+  &.section-header__media--y-top {
+    top: 0;
+  }
+
+  &.section-header__media--y-center {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.section-header__media--inline-right {
+  @include media-up(lg) {
+    order: 2;
+  }
+}
+
+.section-header__copy {
+  &--condensed {
+    @include media-up(lg) {
+      max-width: 70%;
+    }
+  }
+
+  &--columns {
+    @include media-up(lg) {
+      display: flex;
+
+      .section-header__content--right & {
+        flex-direction: row-reverse;
+      }
+
+      > * {
+        flex: 1;
+
+        &:not(:last-child) {
+          margin-bottom: space(2);
+          .section-header__content--left & {
+            margin-right: $grid-gutter * 2;
+          }
+          .section-header__content--right & {
+            margin-left: $grid-gutter * 2;
+          }
+        }
+
+        &:last-child {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  &--has-cta {
+    margin-top: 2.5rem;
+
+    @include media($max: bp(lg)) {
+      .section-header__subheading-wrap + .type-body-1 {
+        margin-top: 2.5rem;
+      }
+    }
+  }
+}
+
+.section-header__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  &.section-header__content--inline-right {
+    order: 1;
+  }
+}

@@ -1,0 +1,82 @@
+.progress-bar {
+  width: 100%;
+  height: 2px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  overflow: hidden;
+
+  &__light {
+    background-color: palette(grey-20);
+  }
+
+  &__medium-light {
+    background-color: palette(grey-20);
+  }
+
+  &__medium {
+    background-color: palette(white);
+  }
+
+  &__medium-dark {
+    background-color: palette(white);
+  }
+
+  &__dark {
+    background-color: palette(white);
+  }
+
+  @include media($min: bp(md)) {
+    .overlap--light & {
+      background-color: palette(grey-20);
+    }
+
+    .overlap--medium-light & {
+      background-color: palette(grey-20);
+    }
+
+    .overlap--medium & {
+      background-color: palette(white);
+    }
+
+    .overlap--medium-dark & {
+      background-color: palette(white);
+    }
+
+    .overlap--dark & {
+      background-color: palette(white);
+    }
+  }
+
+  &__vertical {
+    height: 100%;
+    width: 2px;
+
+    .progress-bar__value {
+      height: 100%;
+      width: 2px;
+      transform: translate3d(0, -100%, 0);
+
+      .is-active & {
+        animation-name: slideDown;
+      }
+    }
+  }
+}
+
+.progress-bar__value {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: translate3d(-100%, 0, 0);
+}
+
+.is-active .progress-bar__value {
+  background-color: palette(black);
+  animation-name: slideRight;
+  animation-duration: 3000ms;
+  animation-timing-function: linear;
+}
+
+.progress-bar.progress-bar__pink .progress-bar__value {
+  background-color: palette(pink);
+}

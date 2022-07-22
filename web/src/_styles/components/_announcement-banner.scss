@@ -1,0 +1,51 @@
+.announcement-banner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: palette(white);
+  max-height: space(7);
+
+  @include media($min: bp(md)) {
+    max-height: 36px;
+  }
+
+  &--blue {
+    background-color: palette(blue);
+  }
+
+  &--black {
+    background-color: palette(black);
+  }
+
+  &--white {
+    color: palette(black);
+    background-color: palette(white);
+  }
+
+  &__dismiss {
+    @include button-style(plain);
+    color: inherit;
+    height: 100%;
+    margin-left: auto;
+    border: none;
+    cursor: pointer;
+    align-self: flex-start;
+    padding-top: space(1);
+
+    @include media($min: bp(md)) {
+      padding-top: space(0);
+      align-self: center;
+    }
+  }
+
+  &__content {
+    @include type-style(menu);
+    padding: space(1);
+    margin-left: auto;
+    text-align: center;
+    overflow-wrap: break-word;
+  }
+}
