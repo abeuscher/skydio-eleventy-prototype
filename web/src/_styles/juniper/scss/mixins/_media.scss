@@ -1,0 +1,49 @@
+/**
+ * Media queries
+ *
+ * Usage:
+ * .selector {
+ *   @include media($min: 1024px) {
+ *     ...
+ *   }
+ * }
+ */
+@mixin media($max: false, $min: false) {
+  @if $max {
+    @if $min {
+      @media screen and (max-width: #{em($max - 1)}) and (min-width: #{em($min)}) {
+        @content;
+      }
+    }
+
+    @else {
+      @media screen and (max-width: #{em($max - 1)}) {
+        @content;
+      }
+    }
+  }
+
+  @else {
+    @media screen and (min-width: #{em($min)}) {
+      @content;
+    }
+  }
+}
+
+// Media of at least the minimum breakpoint width
+// No query for the smallest breakpoint
+// Makes the @content apply to the given breakpoint and wider
+// Mostly useful for utility classes to ensure an extra mq is not added at smallest size
+@mixin media-up($breakpoint) {
+  $min-width: bp-min($breakpoint);
+
+  @if $min-width {
+    @include media($min: $min-width) {
+      @content;
+    }
+  }
+
+  @else {
+    @content;
+  }
+}

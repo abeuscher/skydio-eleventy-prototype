@@ -1,0 +1,96 @@
+.product-feature {
+  &__button {
+    @include media($max: bp(lg)) {
+      padding-left: space(4);
+      padding-right: space(4);
+      width: 100%;
+    }
+
+    @include media($max: bp(md)) {
+      padding-left: space(6);
+      padding-right: space(6);
+      width: 50%;
+    }
+  }
+
+  .section-header {
+    .container {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .type-subtitle {
+      margin-bottom: space(3);
+    }
+  }
+
+  .responsive-slider {
+    @include media($min: bp(md)) {
+      display: flex;
+      justify-content: center;
+      grid-gap: $grid-gutter;
+
+      > * {
+        flex: 1 1 0px;
+        max-width: 33%;
+      }
+    }
+  }
+
+  .no-badge {
+    @include media($min: bp(md)) {
+      margin-top: rem(29);
+    }
+  }
+
+  .small-image {
+    margin-top: 0;
+  }
+
+  &--contained-cards {
+    .responsive-slider {
+      align-items: flex-start;
+      & > * {
+        @include media($max: bp(md)) {
+          .swiper-slide {
+            padding: space(3);
+          }
+        }
+
+        @include media($min: bp(md)) {
+          padding: space(3);
+        }
+      }
+
+      .no-badge {
+        @include media($min: bp(md)) {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  .block-content {
+    @include type-style(menu);
+    margin-top: space(2);
+    margin-bottom: space(2);
+
+    p:not(:last-child) {
+      padding-top: space(2);
+      padding-bottom: space(2);
+      margin: 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid palette(grey-15);
+      }
+    }
+
+    strong {
+      color: palette(pink);
+    }
+
+    &.larger-font {
+      @include type-style("body-1");
+    }
+  }
+}

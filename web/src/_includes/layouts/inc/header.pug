@@ -1,0 +1,27 @@
+header
+  p This is header
+  p The locale is: #{locale}
+  if header
+    ul
+      each item in header.items
+        if item._type === "submenu" && item.items
+          li #{item.title}
+            ul
+              each subItem in item.items
+                li
+                  if subItem && subItem.link && subItem.link.internalLink && subItem.link.internalLink.link
+                    a(href="/" + subItem.link.internalLink.link.content.main.slug.current) #{subItem.label}
+                  else if subItem && subItem.link && subItem.link.internalLink
+                    a(href=subItem.link.internalLink.path) #{subItem.label}
+                  else if subItem && subItem.link && subItem.link.externalLink
+                    a(href=subItem.link.externalLink.link, target="_blank") #{subItem.label}
+                  else
+                    #{subItem.label}
+        else
+          li
+            if item.link && item.link.internalLink
+              a(href=item.link.internalLink.path) #{item.label}
+            else if item.link && item.link.externalLink
+              a(href= item.link.externalLink.url, target="_blank") #{item.label}
+            else
+              #{item.label}

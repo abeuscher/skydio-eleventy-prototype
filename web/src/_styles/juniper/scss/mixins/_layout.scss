@@ -1,0 +1,50 @@
+// Container for main content area
+@mixin container() {
+  $padding: get-grid-setting(1, padding);
+
+  width: 100%;
+  max-width: $max-width;
+  padding-right: $padding;
+  padding-left: $padding;
+  margin-right: auto;
+  margin-left: auto;
+
+  // Loop through the grid settings and adjust the container's
+  // padding if values change at the current size
+  @each $breakpoint in map-keys($grid-settings) {
+    @include media($min: bp($breakpoint)) {
+      @if ($padding != get-grid-setting($breakpoint, padding)) {
+        $padding: get-grid-setting($breakpoint, padding);
+
+        padding-right: $padding;
+        padding-left: $padding;
+      }
+    }
+  }
+}
+
+// Apply negative margins to an element that's inside a container to negate the container's padding
+@mixin negate-container($breakpoint: null) {
+  @if type-of($breakpoint) == string {
+    margin-right: get-grid-setting($breakpoint, padding) * -1;
+    margin-left: get-grid-setting($breakpoint, padding) * -1;
+  }
+
+  @else {
+    $padding: get-grid-setting(1, padding);
+
+    margin-right: $padding * -1;
+    margin-left: $padding * -1;
+
+    @each $breakpoint in map-keys($grid-settings) {
+      @include media($min: bp($breakpoint)) {
+        @if ($padding != get-grid-setting($breakpoint, padding)) {
+          $padding: get-grid-setting($breakpoint, padding);
+
+          margin-right: $padding * -1;
+          margin-left: $padding * -1;
+        }
+      }
+    }
+  }
+}

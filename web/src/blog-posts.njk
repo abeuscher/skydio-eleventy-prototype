@@ -1,0 +1,15 @@
+---
+tags:
+  - myPosts
+pagination:
+  alias: context
+  data: blogposts
+  size: 1
+  addAllPagesToCollections: true
+permalink: /{{ context.permalink }}/index.html
+---
+{% extends "layouts/blog/post.njk" %}
+
+{% block content %}
+  {{ context.data.content.main.title }}
+{% endblock %}

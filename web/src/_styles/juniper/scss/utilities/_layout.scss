@@ -1,0 +1,152 @@
+@use "sass:math";
+
+/*=============================================
+=            Layout classes            =
+=============================================*/
+
+.container {
+  @include container;
+
+  &--fluid {
+    max-width: none;
+  }
+}
+
+/*----------  Flexbox grid  ----------*/
+
+.fgrid {
+  @include flex-grid;
+}
+
+.fgrid__item {
+  @include flex-grid-item;
+}
+
+/*----------  CSS grid  ----------*/
+
+.grid {
+  @include grid;
+
+  &--collapse {
+    grid-column-gap: 0;
+    grid-row-gap: 0;
+  }
+
+  &--column-collapse {
+    grid-column-gap: 0;
+  }
+
+  &--row-collapse {
+    grid-row-gap: 0;
+  }
+}
+
+/*----------  Flex and grid columns  ----------*/
+
+// Defualt for full width grid columns
+.col {
+  @include grid-col-start-end(1 -1);
+}
+
+// Make responsive column size classes
+// Usage: class="fcol-xs-2 fcol-md-4"
+// Usage: class="col-xs-2 col-md-4"
+@each $breakpoint in map-keys($grid-settings) {
+  $columns: get-grid-setting($breakpoint, columns);
+  $gutter: get-grid-setting($breakpoint, gutter);
+
+  @include media-up($breakpoint) {
+    @for $i from 1 through $columns {
+      // flex column (includes gutters)
+      .fcol-#{$breakpoint}-#{$i} {
+        @include calc-fcol-width($i, $columns, $gutter);
+      }
+
+      // flex column offset
+      .foffset-#{$breakpoint}-#{$i} {
+        @include calc-fcol-offset($i, $columns, $gutter);
+      }
+
+      // grid column span
+      .col-#{$breakpoint}-#{$i} {
+        @include grid-col-span($i);
+      }
+
+      // span a column from $i to the end of the grid
+      .col-#{$breakpoint}-#{$i}-end {
+        @include grid-col-start-end($i -1);
+      }
+
+      @for $x from 1 through $columns {
+        // grid column start & end
+        .col-#{$breakpoint}-#{$i}-#{$x} {
+          @include grid-col-start-end($i $x);
+        }
+      }
+    }
+
+    // grid column full width independent of column count
+    .col-#{$breakpoint}-full {
+      @include grid-col-start-end(1 -1);
+    }
+
+    // grid column half width independent of column count
+    .col-#{$breakpoint}-half {
+      @include grid-col-span(math.div($columns, 2));
+    }
+
+    // grid cell order
+    .order-#{$breakpoint}-first {
+      order: -1;
+    }
+
+    .order-#{$breakpoint}-last {
+      order: $columns + 1;
+    }
+
+    @for $i from 0 through $columns {
+      .order-#{$breakpoint}-#{$i} {
+        order: $i;
+      }
+    }
+  }
+}
+
+/*=====  End of Layout classes  ======*/
+
+/*=============================================
+=            Grid guides for dev            =
+=============================================*/
+
+.grid-guide {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: z(hidden);
+
+  &--above {
+    z-index: 1;
+  }
+
+  .container,
+  .fgrid {
+    height: 100%;
+  }
+
+  .fgrid__item {
+    @each $size in map-keys($grid-settings) {
+      @include fcol-width(
+        (
+          $size: 1,
+        )
+      );
+    }
+
+    background-color: rgba(pink, 0.3);
+    height: 100%;
+  }
+}
+
+/*=====  End of Grid guides for dev  ======*/

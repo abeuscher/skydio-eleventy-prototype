@@ -1,0 +1,53 @@
+@use "sass:math";
+
+/**
+ * Helper function to replace characters in a string
+ */
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}
+
+/**
+ * Function to create an optimized svg url
+ * from: http://codepen.io/jakob-e/pen/doMoML
+ *
+ * Usage:
+ * .selector {
+ *   background-image: svg-url('<svg width="10" height="5" viewBox="7 10 10 5" xmlns="http://www.w3.org/2000/svg"><path fill="#000" fill-rule="evenodd" d="M7 10l5 5 5-5"/></svg>');
+ * }
+ *
+ * Can be used with different properties and interpolated scss variables can be used as colors
+ */
+@function svg-url($svg) {
+  // Chunk up string in order to avoid
+  // "stack level too deep" error
+  $encoded: "";
+  $slice: 2000;
+  $index: 0;
+  $loops: ceil(math.div(str-length($svg), $slice));
+
+  @for $i from 1 through $loops {
+    $chunk: str-slice($svg, $index, $index + $slice - 1);
+    // Encode (may need a few extra replacements)
+    $chunk: str-replace($chunk, '"', "'");
+    $chunk: str-replace($chunk, "<", "%3C");
+    $chunk: str-replace($chunk, ">", "%3E");
+    $chunk: str-replace($chunk, "&", "%26");
+    $chunk: str-replace($chunk, "#", "%23");
+    $encoded: #{$encoded}#{$chunk};
+    $index: $index + $slice;
+  }
+
+  @return url("data:image/svg+xml;charset=utf8,#{$encoded}");
+}

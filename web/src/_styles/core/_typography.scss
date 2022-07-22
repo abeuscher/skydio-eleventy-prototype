@@ -1,0 +1,41 @@
+@for $i from 1 through 6 {
+  h#{$i} {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    .block-content &:not(:last-child):not(.type-hero) {
+      margin-bottom: 1em;
+    }
+
+    .block-content &:not(:first-child):not(.type-hero) {
+      margin-top: 1em;
+    }
+  }
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+
+  a {
+    color: inherit;
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 0.9;
+    }
+  }
+
+  .block-content &:not(:last-child) {
+    margin-bottom: 1em;
+  }
+
+  .block-content &:not(:first-child) {
+    margin-top: 1em;
+  }
+}
+
+.nl2br {
+  white-space: pre-wrap;
+}

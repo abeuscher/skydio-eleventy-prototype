@@ -1,0 +1,10 @@
+// Text color classes mapped to $palette
+@each $key, $value in $palette {
+  .color-#{""+$key} {
+    color: $value;
+  }
+
+  .bgc-#{""+$key} {
+    background-color: $value;
+  }
+}

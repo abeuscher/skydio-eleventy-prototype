@@ -1,0 +1,53 @@
+.module {
+  position: relative;
+
+  .overlap--light,
+  .overlap--medium-light,
+  .overlap--medium,
+  .overlap--medium-dark,
+  .overlap--dark {
+    &::after {
+      position: absolute;
+      display: block;
+      // calc accounts for module bottom padding
+      padding-top: calc(#{space(6)} + 10vw);
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      z-index: 0;
+      content: "";
+
+      @include media($min: bp(md)) {
+        padding-top: calc(#{space(8)} + 10vw);
+      }
+    }
+  }
+
+  .overlap--light::after {
+    background-color: palette(white);
+  }
+
+  .overlap--medium-light::after {
+    background-color: palette(grey-15);
+  }
+
+  .overlap--medium::after {
+    background-color: palette(grey-50);
+  }
+
+  .overlap--medium-dark::after {
+    background-color: palette(grey-85);
+  }
+
+  .overlap--dark::after {
+    background-color: palette(black);
+  }
+
+  // Any module content that "overlaps" will need a z-index of 1 or higher
+  .sanity-image,
+  .sanity-video,
+  .figure {
+    position: relative;
+    z-index: 1;
+  }
+}

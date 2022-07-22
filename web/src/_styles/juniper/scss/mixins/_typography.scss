@@ -1,0 +1,19 @@
+@mixin type-style($style) {
+  $style: map-get($type-styles, $style);
+
+  @each $key, $value in $style {
+    // Non-responsive settings, $value is the css property
+    @if type-of($value) != "map" {
+      #{$key}: $value;
+    }
+
+    // Responsive settings, $key is the breakpoint in this case
+    @else {
+      @include media-up($key) {
+        @each $responsive-prop, $responsive-value in $value {
+          #{$responsive-prop}: $responsive-value;
+        }
+      }
+    }
+  }
+}

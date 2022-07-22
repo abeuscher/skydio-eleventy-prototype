@@ -1,0 +1,6 @@
+// Get a map key by its index
+@function get-key-from-index($map, $index) {
+  $keys: map-keys($map);
+
+  @return nth($keys, $index);
+}

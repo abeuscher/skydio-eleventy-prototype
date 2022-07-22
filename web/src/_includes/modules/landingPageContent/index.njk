@@ -1,0 +1,5 @@
+<h1>{{page.content.main.title}}</h1>
+{% for module in page.content.main.modules %}
+  {% set currentModule = module %}
+  {% include "modules/" + module._type + "/index.njk" ignore missing %}
+{% endfor %}

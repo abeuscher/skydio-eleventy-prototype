@@ -1,0 +1,26 @@
+// Type style utility classes
+// Each class corresponds to the keys defined in $type-styles
+@each $style in map-keys($type-styles) {
+  .type-#{$style} {
+    @include type-style($style);
+  }
+}
+
+// Responsive text alignment
+@each $breakpoint in map-keys($grid-settings) {
+  @include media-up($breakpoint) {
+    $breakpoint-classname: get-bp-classname($breakpoint);
+
+    .text#{$breakpoint-classname}-left {
+      text-align: left;
+    }
+
+    .text#{$breakpoint-classname}-right {
+      text-align: right;
+    }
+
+    .text#{$breakpoint-classname}-center {
+      text-align: center;
+    }
+  }
+}

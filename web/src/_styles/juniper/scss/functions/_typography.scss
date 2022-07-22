@@ -1,0 +1,9 @@
+@function get-type-setting($style, $property, $size: null) {
+  @if $size {
+    @return map-get(map-get(map-get($type-styles, $style), $size), $property);
+  }
+
+  @else {
+    @return map-get(map-get($type-styles, $style), $property);
+  }
+}

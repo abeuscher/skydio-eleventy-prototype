@@ -1,0 +1,78 @@
+@use "sass:math";
+
+$browser-context: 16px !default;
+
+/**
+ * Strips units from value
+ *
+ * @param $value {px}
+ */
+@function strip-unit($value) {
+  @return math.div($value, $value * 0 + 1);
+}
+
+/**
+ * Convert pixel values to either rem or em
+ *
+ * @param $value {px} The pixel value to convert
+ * @param $unit {rem or em} The unit to use
+ * @param $base-value {px} optional The base pixel value by which the output value will be determined
+ */
+@function convert-to-relative-unit(
+  $value,
+  $unit: "rem",
+  $base-value: $browser-context
+) {
+  // stylelint-disable length-zero-no-unit
+  $value: math.div(strip-unit($value), strip-unit($base-value));
+
+  @if ($unit == "rem") {
+    $value: $value * 1rem;
+  }
+
+  @else {
+    $value: $value * 1em;
+  }
+
+  @if ($value == 0 or $value == 0) {
+    $value: 0;
+  }
+
+  @return $value;
+}
+
+/**
+ * Return a list of relative values from a single function call
+ */
+@function relative-unit($values, $unit, $base-value: $browser-context) {
+  $max: length($values);
+
+  @if $max == 1 {
+    @return convert-to-relative-unit(nth($values, 1), $unit, $base-value);
+  }
+
+  $relative-values: ();
+
+  @for $i from 1 through $max {
+    $relative-values: append(
+      $relative-values,
+      convert-to-relative-unit(nth($values, $i), $unit, $base-value)
+    );
+  }
+
+  @return $relative-values;
+}
+
+/**
+ * Wrapper function for relative-unit that returns rem values
+ */
+@function rem($values, $base-value: $browser-context) {
+  @return relative-unit($values, "rem", $base-value);
+}
+
+/**
+ * Wrapper function for relative-unit that returns em values
+ */
+@function em($values, $base-value: $browser-context) {
+  @return relative-unit($values, "em", $base-value);
+}

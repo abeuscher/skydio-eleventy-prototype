@@ -1,0 +1,92 @@
+// Margin and Padding
+//
+// Usage: class="mt-1 mb-md-3" or class="p-1"
+// Sizes correspond to the spacing values set in $spacers
+// Can be used for for all breakpoints, with all values, x-axis only, y-axis only, or specifc sides
+// Note that the xs up class doesn't require a breakpoint in the classname ("mt-1")
+@each $breakpoint in map-keys($grid-settings) {
+  @include media-up($breakpoint) {
+    $breakpoint-classname: get-bp-classname($breakpoint);
+
+    @each $prop, $abbrev in (margin: m, padding: p) {
+      @each $size, $length in $spacers {
+        .#{$abbrev}#{$breakpoint-classname}-#{$size} {
+          #{$prop}: $length;
+        }
+
+        .#{$abbrev}t#{$breakpoint-classname}-#{$size},
+        .#{$abbrev}y#{$breakpoint-classname}-#{$size} {
+          #{$prop}-top: $length;
+        }
+
+        .#{$abbrev}r#{$breakpoint-classname}-#{$size},
+        .#{$abbrev}x#{$breakpoint-classname}-#{$size} {
+          #{$prop}-right: $length;
+        }
+
+        .#{$abbrev}b#{$breakpoint-classname}-#{$size},
+        .#{$abbrev}y#{$breakpoint-classname}-#{$size} {
+          #{$prop}-bottom: $length;
+        }
+
+        .#{$abbrev}l#{$breakpoint-classname}-#{$size},
+        .#{$abbrev}x#{$breakpoint-classname}-#{$size} {
+          #{$prop}-left: $length;
+        }
+      }
+    }
+
+    // Negative margins (e.g., where `.mb-n1` is negative version of `.mb-1`)
+    @each $size, $length in $spacers {
+      @if $size != 0 {
+        .m#{$breakpoint-classname}-n#{$size} {
+          margin: -$length;
+        }
+
+        .mt#{$breakpoint-classname}-n#{$size},
+        .my#{$breakpoint-classname}-n#{$size} {
+          margin-top: -$length;
+        }
+
+        .mr#{$breakpoint-classname}-n#{$size},
+        .mx#{$breakpoint-classname}-n#{$size} {
+          margin-right: -$length;
+        }
+
+        .mb#{$breakpoint-classname}-n#{$size},
+        .my#{$breakpoint-classname}-n#{$size} {
+          margin-bottom: -$length;
+        }
+
+        .ml#{$breakpoint-classname}-n#{$size},
+        .mx#{$breakpoint-classname}-n#{$size} {
+          margin-left: -$length;
+        }
+      }
+    }
+
+    .m#{$breakpoint-classname}-auto {
+      margin: auto;
+    }
+
+    .mt#{$breakpoint-classname}-auto,
+    .my#{$breakpoint-classname}-auto {
+      margin-top: auto;
+    }
+
+    .mr#{$breakpoint-classname}-auto,
+    .mx#{$breakpoint-classname}-auto {
+      margin-right: auto;
+    }
+
+    .mb#{$breakpoint-classname}-auto,
+    .my#{$breakpoint-classname}-auto {
+      margin-bottom: auto;
+    }
+
+    .ml#{$breakpoint-classname}-auto,
+    .mx#{$breakpoint-classname}-auto {
+      margin-left: auto;
+    }
+  }
+}

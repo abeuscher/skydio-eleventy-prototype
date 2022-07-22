@@ -1,0 +1,79 @@
+.form-element {
+  @include form-element;
+
+  &--hidden {
+    margin-bottom: 0;
+  }
+
+  &--checkbox {
+    .form-element__label {
+      @include form-checkbox-label-input;
+
+      display: inline-block;
+    }
+  }
+}
+
+.form-element__label {
+  @include form-label;
+}
+
+.form-element__input {
+  &--text,
+  &--password,
+  &--email,
+  &--number,
+  &--tel {
+    @include form-input;
+  }
+
+  &--select {
+    @include form-select;
+  }
+
+  &--textarea {
+    @include form-textarea;
+
+    height: auto;
+  }
+
+  &--checkbox {
+    @include visually-hidden;
+
+    &:checked {
+      ~ .form-element__label {
+        @include form-checkbox-label-input(true);
+      }
+    }
+  }
+}
+
+.form-element--radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: space(3);
+}
+
+.form-element--radio {
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.form-element__input--radio {
+  @include visually-hidden;
+
+  & + .form-element__label {
+    @include button;
+
+    padding-right: rem(17);
+    padding-left: rem(17);
+    margin-bottom: 0;
+    width: 100%;
+    border: 1px solid palette(grey-20);
+    border-radius: 3px;
+  }
+
+  &:checked + .form-element__label {
+    border-color: palette(blue);
+  }
+}
