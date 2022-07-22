@@ -4,12 +4,8 @@ const client = require("../_utils/data/sanityClient.js");
 const serializers = require("../_utils/serializers");
 const overlayDrafts = require("../_utils/data/overlayDrafts");
 const hasToken = !!client.config().token;
-
-function generatePost(post) {
-  return {
-    ...post,
-  };
-}
+const contextCache = require("../_utils/data/contextCache");
+const { createContextForPages } = require("../_utils/data/createPageContext");
 
 async function getPosts() {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
@@ -22,11 +18,16 @@ async function getPosts() {
       }
     },
   }`;
+  const generatePath = (doc) => {
+    return `/${[doc.i18n_lang, "3d-scan-gallery", doc.content.main.slug.current]
+      .filter((part) => part)
+      .join("/")}`;
+  };
   const query = [filter, projection].join(" ");
   const docs = await client.fetch(query).catch((err) => console.error(err));
   const reducedDocs = overlayDrafts(hasToken, docs);
-  const preparePosts = reducedDocs.map(generatePost);
+  const preparePosts = await createContextForPages(docs, generatePath);
   return preparePosts;
 }
 
-module.exports = getPosts;
+module.exports = contextCache("threedscans", getPosts);

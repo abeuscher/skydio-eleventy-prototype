@@ -1,9 +1,12 @@
 ---
-layout: layouts/3d-scan-gallery/post.njk
 pagination:
-  alias: post
+  alias: context
   data: threedscans
   size: 1
   addAllPagesToCollections: true
-permalink: /3d-scan-gallery/{{ post.content.main.slug.current | slug }}/index.html
+permalink: /{{ context.permalink }}/index.html
 ---
+{% extends "layouts/3d-scan-gallery/post.njk" %}
+
+{% block content %}
+{% endblock %}

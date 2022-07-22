@@ -1,11 +1,15 @@
 ---
-layout: layouts/blog/post.njk
 tags:
   - myPosts
 pagination:
-  alias: post
+  alias: context
   data: blogposts
   size: 1
   addAllPagesToCollections: true
-permalink: /blog/{{ post.content.main.slug.current | slug }}/index.html
+permalink: /{{ context.permalink }}/index.html
 ---
+{% extends "layouts/blog/post.njk" %}
+
+{% block content %}
+  {{ context.data.content.main.title }}
+{% endblock %}
