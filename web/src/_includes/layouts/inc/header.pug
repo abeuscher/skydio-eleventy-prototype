@@ -1,27 +1,26 @@
-header
-  p This is header
-  p The locale is: #{locale}
+header.site-header
   if header
-    ul
-      each item in header.items
-        if item._type === "submenu" && item.items
-          li #{item.title}
-            ul
-              each subItem in item.items
-                li
-                  if subItem && subItem.link && subItem.link.internalLink && subItem.link.internalLink.link
-                    a(href="/" + subItem.link.internalLink.link.content.main.slug.current) #{subItem.label}
-                  else if subItem && subItem.link && subItem.link.internalLink
-                    a(href=subItem.link.internalLink.path) #{subItem.label}
-                  else if subItem && subItem.link && subItem.link.externalLink
-                    a(href=subItem.link.externalLink.link, target="_blank") #{subItem.label}
-                  else
-                    #{subItem.label}
-        else
-          li
-            if item.link && item.link.internalLink
-              a(href=item.link.internalLink.path) #{item.label}
-            else if item.link && item.link.externalLink
-              a(href= item.link.externalLink.url, target="_blank") #{item.label}
+    .container.py-2.container--full-bleed.d-flex.jc-between.ai-center
+      .site-logo  
+        a(href="/")
+          include logo.svg
+      nav.site-nav
+        .site-nav__inner
+          each item in header.items
+            if item._type === "submenu" && item.items
+              .site-nav__link-wrapper.px-xl-1
+                button.site-nav__link.site-nav__link--has-subnav.type-menu.d-inline-block.py-lg-1 #{item.title}
+                  svg.icon-chevron-left(aria-hidden='true' focusable='false' role='presentation' xmlns='http://www.w3.org/2000/svg' width='9' height='15')
+                    title Left
+                    path(fill-rule='evenodd' clip-rule='evenodd' d='M8.20711 0.292893C7.81658 -0.0976311 7.18342 -0.0976311 6.79289 0.292893L0.292893 6.79289C-0.0976315 7.18342 -0.0976315 7.81658 0.292893 8.20711L6.79289 14.7071C7.18342 15.0976 7.81658 15.0976 8.20711 14.7071C8.59763 14.3166 8.59763 13.6834 8.20711 13.2929L2.41421 7.5L8.20711 1.70711C8.59763 1.31658 8.59763 0.683417 8.20711 0.292893Z' fill='currentColor')
+                ul.site-nav__subnav
+                  button.site-nav__subnav-item.site-nav__subnav-item--back
+                    svg.icon-chevron-left(aria-hidden='true' focusable='false' role='presentation' xmlns='http://www.w3.org/2000/svg' width='9' height='15')
+                      title Left
+                      path(fill-rule='evenodd' clip-rule='evenodd' d='M8.20711 0.292893C7.81658 -0.0976311 7.18342 -0.0976311 6.79289 0.292893L0.292893 6.79289C-0.0976315 7.18342 -0.0976315 7.81658 0.292893 8.20711L6.79289 14.7071C7.18342 15.0976 7.81658 15.0976 8.20711 14.7071C8.59763 14.3166 8.59763 13.6834 8.20711 13.2929L2.41421 7.5L8.20711 1.70711C8.59763 1.31658 8.59763 0.683417 8.20711 0.292893Z' fill='currentColor')
+                    span.ml-1.d-block.py-lg-1 Back
+                  each subItem in item.items
+                    li.site-nav__subnav-item
+                      a.d-block.py-lg-1.parent-link(href=filters.sanitySlug(subItem.link)) #{subItem.label}
             else
-              #{item.label}
+              a.site-nav__link.type-menu.d-inline-block.py-lg-1(href=filters.sanitySlug(item.link)) #{item.label}

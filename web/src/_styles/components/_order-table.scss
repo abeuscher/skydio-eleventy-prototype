@@ -1,0 +1,145 @@
+// Styling for single order table in order.liquid customer template
+
+.order-table__header,
+.order-item,
+.order-table__footer {
+  @include media($min: bp(md)) {
+    display: grid;
+    grid-gap: 0 $grid-gutter;
+    grid-template-columns: repeat(13, minmax(0, 1fr));
+  }
+}
+
+.order-table__header {
+  @include media($max: bp(md)) {
+    display: none;
+  }
+}
+
+.order-table__column {
+  @include media($min: bp(md)) {
+    &--product {
+      grid-column-start: span 5;
+    }
+
+    &--sku,
+    &--price,
+    &--quantity,
+    &--total {
+      grid-column-start: span 2;
+    }
+
+    &--total {
+      text-align: right;
+      justify-self: flex-end;
+    }
+  }
+}
+
+// Order items
+
+.order-table__items {
+  border-top: 1px solid $color-border;
+}
+
+.order-item {
+  border-bottom: 1px solid $color-border;
+
+  @include media($max: bp(md)) {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  [class*="order-table__column"] {
+    @include media($min: bp(md)) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  [data-before-text] {
+    @include media($max: bp(md)) {
+      &::before {
+        content: attr(data-before-text);
+      }
+    }
+  }
+}
+
+.order-item__product-info,
+.order-item__sku,
+.order-item__price,
+.order-item__quantity {
+  @include media($max: bp(md)) {
+    padding-left: calc(#{rem(60)} + #{space(3)});
+  }
+}
+
+.order-item__price,
+.order-item__total {
+  @include media($max: bp(md)) {
+    display: inline-block;
+  }
+}
+
+.order-item__product-info,
+.order-item__sku {
+  flex-basis: 100%;
+}
+
+.order-item__product-info {
+  display: flex;
+}
+
+.order-item__product-image {
+  width: rem(60);
+  height: rem(60);
+  background-color: $color-border;
+
+  @include media($max: bp(md)) {
+    position: absolute;
+    left: 0;
+  }
+}
+
+.order-item__options {
+  // TODO: Change this for a variable
+  font-size: 12px;
+}
+
+.order-item__quantity {
+  @include media($max: bp(md)) {
+    display: none;
+  }
+}
+
+.order-item__total {
+  margin-left: auto;
+  text-align: right;
+}
+
+// Totals
+
+.order-table__total-row {
+  display: flex;
+  justify-content: space-between;
+  grid-column-start: 10;
+  grid-column-end: span 4;
+  margin-bottom: space(2);
+
+  @include media($min: bp(md)) {
+    margin-bottom: space(4);
+  }
+}
+
+.order-table__total-row--total {
+  margin-top: space(1);
+  padding-top: space(1);
+  border-top: 1px solid $color-border;
+
+  @include media($min: bp(md)) {
+    margin-top: space(2);
+    padding-top: space(4);
+  }
+}

@@ -42,6 +42,13 @@
 @import "./components/modules/hero";
 @import "./components/modules/product-feature";
 
+@import "./components/site-footer";
+@import "./components/site-header";
+
 // Templates
 @import "./templates/account";
 @import "./templates/product";
+
+// Modules
+@import "./components/modules/simple-hero-module";
+@import "./components/modules/background-image";

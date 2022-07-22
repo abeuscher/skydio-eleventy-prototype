@@ -1,0 +1,61 @@
+.simple-hero-module {
+  .header-content {
+    text-align: center;
+    .gatsby-image-wrapper {
+      max-width: 315px;
+      width: 60%;
+      display: inline-block;
+      margin-bottom: 1rem;
+    }
+  }
+  .image-content {
+    padding-top: 4rem;
+  }
+  .button-group {
+    .button {
+      display: block;
+      margin-bottom: 1rem;
+    }
+  }
+  .bg-image-mobile-wrapper {
+    margin: 0 -1rem;
+  }
+  .bg-image {
+    display: none;
+  }
+  @include media($min: bp(md)) {
+    .bg-image-mobile-wrapper {
+      display: none;
+    }
+    .bg-image {
+      display: block;
+    }
+  }
+  @include media($min: bp(lg)) {
+    .button-group {
+      .button {
+        display: inline-block;
+        margin-bottom: 0;
+        margin-right: 1rem;
+      }
+    }
+    .image-content {
+      position: relative;
+      z-index: 1;
+      padding-top: 0;
+      .bg-image {
+        text-align: center;
+      }
+    }
+    .header-content {
+      text-align: left;
+      position: relative;
+      margin-top: -10rem;
+      .gatsby-image-wrapper {
+        max-width: 515px;
+        width: 50%;
+        margin-bottom: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,104 @@
+.content-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &--reverse {
+    flex-direction: column-reverse;
+  }
+
+  &__column {
+    display: grid;
+    grid-gap: space(2);
+
+    @include media($min: bp(md)) {
+      grid-gap: space(3);
+    }
+
+    &--spacer {
+      @include media($max: bp(md)) {
+        display: none;
+      }
+    }
+  }
+
+  &__sizer {
+    display: flex;
+    height: 100%;
+    flex: 1;
+  }
+
+  &__content-wrap {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+  }
+
+  &__image-wrap {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+
+    &--stretch {
+      height: 100%;
+      padding: 0;
+
+      @include media($min: bp(md)) {
+        min-height: rem(200);
+      }
+    }
+
+    &--background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0;
+      z-index: 0;
+    }
+  }
+
+  &__image-inner-wrap {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+
+    &.gatsby-image-wrapper {
+      width: 100%;
+    }
+  }
+
+  [style*="--aspect-ratio"]::before {
+    content: "";
+    float: left;
+    padding-bottom: calc(100% / (var(--aspect-ratio)));
+  }
+
+  [style*="--aspect-ratio"]::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

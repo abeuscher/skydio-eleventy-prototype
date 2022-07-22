@@ -1,0 +1,88 @@
+$modal-z-index: z(modal) !default;
+$modal-overlay-background: rgba(#000, 0.6) !default;
+$modal-container-background: #fff !default;
+$modal-container-padding: 32px !default;
+$modal-container-max-width: 600px !default;
+$modal-container-gutter: 16px !default;
+$modal-animation-duration: 300ms !default;
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: $modal-z-index;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: $modal-container-gutter;
+  background-color: $modal-overlay-background;
+
+  &--video {
+    background-color: rgba(palette(black), 0.9);
+  }
+}
+
+.modal__inner {
+  overflow-y: auto;
+  width: 100%;
+  max-width: $modal-container-max-width;
+  max-height: 100%;
+  padding: $modal-container-padding;
+  background-color: $modal-container-background;
+  outline: none;
+
+  .modal--video & {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 85vw;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .modal--password & {
+    position: relative;
+  }
+}
+
+.modal__close {
+  position: absolute;
+  top: space(2);
+  right: space(2);
+
+  .modal--video & {
+    @include reset-button;
+
+    position: absolute;
+    top: $grid-gutter * 2;
+    right: $grid-gutter * 2;
+    z-index: z(media);
+    height: rem(25);
+    font-size: rem(50);
+    line-height: 0;
+    color: palette(white);
+  }
+
+  .modal--password & {
+    top: space(1);
+    right: space(1);
+    color: palette(black);
+  }
+}
+
+// Transition duration on close (closeTimeoutMS) needs to be updated in Modal.js
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity $modal-animation-duration;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+}

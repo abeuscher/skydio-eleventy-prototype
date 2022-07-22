@@ -1,0 +1,102 @@
+/*
+.hero-image {
+  @include media($max: bp(sm)) {
+    //width: 130%;
+    margin-left: -15%;
+  }
+}
+*/
+.hero-specs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @include media($min: bp(lg)) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.hero-specs__item {
+  padding: space(2);
+
+  @include media($max: bp(lg)) {
+    &:nth-child(odd) {
+      border-right: 1px solid palette(grey-30);
+    }
+
+    &:nth-child(-n + 4) {
+      border-bottom: 1px solid palette(grey-30);
+    }
+  }
+
+  @include media($min: bp(lg)) {
+    padding-right: space(3);
+    padding-left: space(3);
+
+    &:nth-child(-n + 5):not(:nth-child(3)) {
+      border-right: 1px solid palette(grey-30);
+    }
+
+    &:nth-child(-n + 3) {
+      border-bottom: 1px solid palette(grey-30);
+    }
+  }
+}
+
+.hero-specs__label {
+  @include type-style(subtitle);
+
+  margin-bottom: space(1);
+  color: rgba(palette(white), 0.4);
+}
+
+.hero-specs__spec {
+  @include type-style(h4);
+
+  font-size: 1.3rem;
+  color: palette(white);
+}
+
+.hero-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: auto;
+
+  @include media($max: bp(md)) {
+    margin-top: space(6);
+    margin-bottom: space(6);
+  }
+
+  @include media($min: bp(md), $max: bp(lg)) {
+    margin-right: -1 * get-grid-setting(md, padding);
+  }
+}
+
+.hero-video-trigger {
+  position: absolute;
+  top: rem(-100);
+
+  @include media($max: bp(sm)) {
+    top: rem(-60);
+  }
+}
+
+.hero-video__play {
+  @include reset-button;
+  @include type-style(button);
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: color 200ms ease;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &:hover {
+    color: palette(grey-30);
+  }
+}

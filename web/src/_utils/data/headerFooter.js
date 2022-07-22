@@ -27,7 +27,6 @@ const navQuery = `{
   }
 }`;
 
-
 const getHeaderFooter = async (locale) => {
   locale = locale || "en-us";
 

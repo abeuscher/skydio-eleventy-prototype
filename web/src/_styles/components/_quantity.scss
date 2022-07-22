@@ -1,0 +1,28 @@
+$local-input-size: rem(44);
+
+.quantity {
+  display: inline-flex;
+  width: 100%;
+}
+
+.quantity__button {
+  @include reset-button;
+
+  flex: 0 0 auto;
+  width: $local-input-size;
+  height: $local-input-size;
+}
+
+.quantity__input {
+  flex: 1 1 auto;
+  width: calc(100% - #{$local-input-size * 2});
+  width: $local-input-size;
+  text-align: center;
+  appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+}

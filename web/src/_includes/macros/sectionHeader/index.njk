@@ -1,14 +1,14 @@
 {% macro sectionHeader(data) %}
-    <header class="section-header">
-        <div class="container grid {{containerClasses(currentModule)}}">
-            {% if currentModule.displayImage %}
-                <div class="section-header__media section-header__media--x-{{currentModule.horizontalAlignment}} section-header__media--y-{{currentModule.verticalAlignment}}
+  <header class="section-header">
+    <div class="container grid {{containerClasses(currentModule)}}">
+      {% if currentModule.displayImage %}
+        <div class="section-header__media section-header__media--x-{{currentModule.horizontalAlignment}} section-header__media--y-{{currentModule.verticalAlignment}}
 {{'section-header__media--inline mb-4' if inlineImage}}
 {{'col-xs-2-4 col-sm-3-7 col-md-4-10 col-lg-5-9' if horizontalAlignment === 'center'}}
 {{'col-xs-1-4 col-sm-1-8 col-md-1-7 col-lg-1-6 mb-md-0' if horizontalAlignment === 'left'}}
 {{'section-header__media--inline-right col-xs-2-end col-sm-2-end col-md-7-end col-lg-8-end mb-md-0' if horizontalAlignment === 'right'}}
 ">
-                    {% if not mediaType or mediaType === 'image' and image %}{% endif %}
+          {% if not mediaType or mediaType === 'image' and image %}{% endif %}
             {(!mediaType || ) && image && (
               <Image
                 image={image}
@@ -19,7 +19,7 @@
             )}
             {mediaType === 'video' && video && <Video data={video}/>}
           </div>
-            {% endif %}
+      {% endif %}
         {displayMedia && (
           
         )}
@@ -96,7 +96,7 @@
                 'section-header__copy--has-cta': displayButton && !displayMedia,
               })}
             >
-                    <div className="section-header__subheading-wrap">
+          <div className="section-header__subheading-wrap">
                 {subheading && (
                   <BlockOrString
                     value={subheading}
@@ -134,6 +134,6 @@
             </div>
           )}
         </div>
-        </ContainerGrid>
-    </header>
+    </ContainerGrid>
+  </header>
 {% endmacro %}

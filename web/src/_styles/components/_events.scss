@@ -1,0 +1,124 @@
+.events-nav {
+  .d-flex {
+    align-items: center;
+  }
+
+  .filter-menu {
+    width: 16rem;
+  }
+}
+.event-meta-overlay {
+  top: auto;
+  height: auto;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 6px 10px;
+}
+.event-list-item {
+  position: relative;
+}
+.event-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  a.button:first-child {
+    margin-right: 0.5em;
+  }
+}
+.event-type-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  &:after {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+.events-main-header {
+  position: relative;
+  overflow: hidden;
+  min-height: 450px;
+  .hero-copy {
+    position: relative;
+  }
+}
+.events-button {
+  font-family: $fontstack-blender;
+  color: black;
+  font-weight: 300;
+}
+.hover-text-color {
+  &:hover {
+    color: palette(grey-40) !important;
+    h1,
+    h2,
+    h3,
+    h4,
+    p,
+    div,
+    span {
+      color: palette(grey-40) !important;
+    }
+  }
+}
+.more--link {
+  text-align: right;
+  flex-basis: 100%;
+}
+.news-thumb {
+  width: 100%;
+  flex-basis: 100%;
+  padding-bottom: 56.25%;
+  &:after {
+    transition: 0.4s cubic-bezier(0.335, 0.815, 0.47, 1) !important;
+    background-size: 100% !important;
+  }
+  &:hover {
+    &:after {
+      transition: 0.4s cubic-bezier(0.335, 0.815, 0.47, 1) !important;
+      background-size: 105% !important;
+    }
+  }
+}
+/*
+html[lang="en-us"] {
+  .hero-2-up__block-1 {
+    .hero-2-up__background-image {
+      background: transparent
+        url("https://cdn.sanity.io/images/mgxz50fq/production/bab295c149b990f5bab001dd22ffd063e2ad8079-386x376.png")
+        no-repeat top right;
+      background-size: 40%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 50%;
+      z-index: 1;
+    }
+    .hero-2-up__content {
+      position: relative;
+    }
+  }
+  @media only screen and (min-width: 1024px) {
+    .hero-2-up__block-1 .hero-2-up__background-image {
+      background: transparent
+        url("https://cdn.sanity.io/images/mgxz50fq/production/fb95fe329b7e72456c56d583f2ce6e8ab428b210-386x376.png")
+        no-repeat top left;
+      background-size: 250px 250px;
+    }
+  }
+  @media only screen and (min-width: 1920px) {
+    .hero-2-up__block-1 .hero-2-up__background-image {
+      left: auto;
+      width: 1920px;
+    }
+  }
+}
+*/

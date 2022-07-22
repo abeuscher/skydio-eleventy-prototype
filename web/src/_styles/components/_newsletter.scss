@@ -1,0 +1,48 @@
+.newsletter {
+  max-width: 100%;
+  width: rem(365);
+}
+
+.newsletter__form-inner {
+  @include button;
+
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding: 0;
+  background-color: palette(grey-80);
+
+  .form-element--email {
+    font-family: $fontstack-gilroy;
+    width: rem(230);
+    margin-bottom: 0;
+  }
+
+  .form-element__input--email {
+    flex-grow: 1;
+    padding: 0 space(3);
+    font-size: rem(16);
+    color: palette(white);
+    background: transparent;
+    border: transparent;
+  }
+
+  .form-element__input--submit {
+    padding: space(1) rem(20);
+  }
+}
+
+.newsletter__message-success {
+  @include type-style(h3);
+  background-color: palette(grey-85);
+  border-radius: rem(21);
+  color: palette(blue);
+  font-weight: 400;
+  text-align: center;
+}
+
+.newsletter__message-error {
+  @include type-style(figure-caption);
+  color: palette(white);
+  font-style: italic;
+}
