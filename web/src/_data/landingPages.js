@@ -2,7 +2,7 @@ const query = require("../_utils/data/query");
 const { createContextForPages } = require("../_utils/data/createPageContext");
 const contextCache = require("../_utils/data/contextCache");
 
-module.exports = contextCache("landingPages", async function () {
+module.exports = () => contextCache("landingPages", async function () {
   const config = await query.getSiteConfig();
   const docs = await query.getDocuments("landingPage", true);
   const homepage = docs.filter((context) => context._id === config.frontpage._ref).pop();

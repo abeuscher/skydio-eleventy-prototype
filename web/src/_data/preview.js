@@ -1,5 +1,5 @@
 const query = require("../_utils/data/query");
-const createPageContext = require("../_utils/data/createPageContext");
+const { createPageContext } = require("../_utils/data/createPageContext");
 
 module.exports = async (data) => {
   const pageId = data?.eleventy?.serverless?.path?.id;
@@ -11,7 +11,8 @@ module.exports = async (data) => {
       return {};
     }
 
-    return createPageContext(pageData);
+    const context = await createPageContext(pageData);
+    return context;
   }
 
   // Get page data depending on type

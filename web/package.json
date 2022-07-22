@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "build": "npx eleventy",
-    "dev": "NODE_ENV=development npx eleventy --watch --serve --port=8082",
+    "dev": "npm run clean && NODE_ENV=development npx eleventy --watch --serve --port=8082",
     "now-build": "npm run build",
-    "debug": "DEBUG=* npx eleventy"
+    "debug": "DEBUG=* npx eleventy",
+    "clean": "rimraf public .cache"
   },
   "keywords": [],
   "author": "",
@@ -25,5 +26,8 @@
     "pug": "^3.0.2",
     "sass": "^1.53.0",
     "swiper": "^8.0.7"
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2"
   }
 }

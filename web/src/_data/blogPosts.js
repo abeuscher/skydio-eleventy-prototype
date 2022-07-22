@@ -1,16 +1,7 @@
-const BlocksToMarkdown = require("@sanity/block-content-to-markdown");
 const groq = require("groq");
 const client = require("../_utils/data/sanityClient.js");
-const overlayDrafts = require("../_utils/data/overlayDrafts");
 const {createContextForPages} = require("../_utils/data/createPageContext");
-const hasToken = !!client.config().token;
 const contextCache = require("../_utils/data/contextCache");
-
-function generatePost(post) {
-  return {
-    ...post,
-  };
-}
 
 async function getPosts() {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
@@ -40,4 +31,4 @@ async function getPosts() {
   return preparePosts;
 }
 
-module.exports = contextCache("posts", getPosts);
+module.exports = () => contextCache("posts", getPosts);

@@ -11,8 +11,8 @@ const createLanguagePaths = (pages, getPath) => {
     const lang = page.i18n_lang ?? 'en-us';
 
     const pagePath =
-      page.content.main.slug.current ??
-      page.content.main.parent.slug.current;
+      page.content.main?.slug?.current ??
+      page.content.main?.parent?.slug?.current;
 
     if (!languagePaths[pagePath]) {
       languagePaths[pagePath] = {};
@@ -27,7 +27,7 @@ const createLanguagePaths = (pages, getPath) => {
   return languagePaths;
 };
 
-const getActiveLanguagePaths = paths => {
+const getActiveLanguagePaths = (paths = []) => {
   return Object.assign(
     {},
     ...Object.keys(paths)

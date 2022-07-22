@@ -2,7 +2,10 @@ const { AssetCache } = require("@11ty/eleventy-fetch");
 const fs = require("fs");
 
 module.exports = async (key, dataFunction) => {
-  if ((!process.env.ELEVENTY_SERVERLESS && process.env.NODE_ENV !== "development") || process.env.CACHE_ENABLED === "true") {
+  if (
+    (!process.env.ELEVENTY_SERVERLESS && process.env.NODE_ENV !== "development") ||
+    process.env.ENABLE_CACHE === "true"
+  ) {
     const cacheDir = process.env.NODE_ENV !== "development" ? "cache" : ".cache";
     const assetCache = new AssetCache(key, cacheDir, {
       duration: "*",
@@ -17,14 +20,12 @@ module.exports = async (key, dataFunction) => {
     }
   }
 
-  return async () => {
-    const data = await dataFunction();
+  const data = await dataFunction();
 
-    const assetCache = new AssetCache("landingPages", ".cache", {
-      duration: "*",
-    });
-    await assetCache.save(data, "json");
+  const assetCache = new AssetCache(key, ".cache", {
+    duration: "*",
+  });
+  await assetCache.save(data, "json");
 
-    return data;
-  };
+  return data;
 };

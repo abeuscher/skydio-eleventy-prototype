@@ -39,6 +39,7 @@ const getHeaderFooter = async (locale) => {
      }
   `
     );
+
     const getNavDict = (navs) =>
       Object.assign(
         ...navs.map((nav) => ({

@@ -1,11 +1,16 @@
 ---
 title: Flight School
-permalink: /flight-school/index.html
+pagination:
+  alias: context
+  data: flightSchoolIndex
+  size: 1
+permalink: /{{ context.permalink }}/index.html
 ---
 {% extends "layouts/flight-school/index.njk" %}
 
 {% block content %}
-  {% for post in index.context.posts %}
-    <h2>{{ post.content.main.title }}</h2>
+  <h1>{{ context.data.content.main.title }}</h1>
+  {% for post in context.data.posts %}
+    <p>{{ post.data.content.main.title }}</p>
   {% endfor %}
 {% endblock %}

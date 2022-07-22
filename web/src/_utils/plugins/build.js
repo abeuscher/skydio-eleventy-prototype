@@ -14,7 +14,13 @@ const buildPug = function (pugFile, data) {
     return rendered[key];
   }
 
-  rendered[key] = pug.renderFile(path.join(__dirname, `../../_includes/${pugFile}`), data);
+  try {
+    rendered[key] = pug.renderFile(path.join(__dirname, `../../_includes/${pugFile}`), data);
+  } catch (ex) {
+    console.error("Error rendering pug file:", pugFile, "with data:", data);
+    console.error(ex);
+    rendered[key] = "";
+  }
 
   return rendered[key];
 };
@@ -25,7 +31,7 @@ module.exports = (eleventyConfig) => {
   developmentMode = !process.env.NODE_ENV || process.env.NODE_ENV === "development";
   eleventyConfig.addShortcode("pug", buildPug);
   eleventyConfig.addTransform("htmlmin", (content, outputPath) => {
-    if (outputPath.endsWith(".html")) {
+    if (outputPath && outputPath.endsWith(".html")) {
       return htmlmin.minify(content, {
         collapseWhitespace: true,
         conservativeCollapse: true,
