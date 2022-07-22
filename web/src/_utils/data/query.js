@@ -39,8 +39,23 @@ const queryDocument = async (id) => {
   return client.fetch(singleDocumentQuery, { id: id });
 };
 
+const createDraftQuery = (filter, projection) => {
+  return `
+    {
+      "drafts": *[${filter} && _id in path("drafts.**") ]._id,
+      "published": *[${filter} && !(_id in path("drafts.**"))]._id,
+    }
+    {
+      "current": published[ !("drafts." + @ in ^.drafts) ] + drafts
+    }
+    {
+      "results": *[_id in ^.current] ${projection}
+    }`;
+}
+
 module.exports = {
   getDocument: queryDocument,
   getDocuments: queryDocuments,
   getSiteConfig: querySiteConfig,
+  createDraftQuery
 };

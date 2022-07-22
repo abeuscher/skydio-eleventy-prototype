@@ -1,9 +1,16 @@
 ---
-layout: layouts/3d-scan-gallery/index.njk
 title: 3D Scan Gallery
-permalink: /3d-scan-gallery/index.html
+pagination:
+  alias: context
+  data: threeDScanIndex
+  size: 1
+permalink: /{{ context.permalink }}/index.html
 ---
-{% for post in threedscans %}
-    <p>{{post.content.main.title}}</p>
-{% endfor %}
-{{threedscans.length}}
+{% extends "layouts/blog/index.njk" %}
+
+{% block content %}
+  <h1>{{ context.data.content.main.title }}</h1>
+  {% for post in context.data.posts %}
+    <p>{{ post.data.content.main.title }}</p>
+  {% endfor %}
+{% endblock %}
